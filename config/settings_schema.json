@@ -1,0 +1,69 @@
+[
+  {
+    "name": "Velour Theme Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typography"
+      },
+      {
+        "type": "select",
+        "id": "heading_font",
+        "label": "Heading Font",
+        "default": "cormorant_garamond",
+        "options": [
+          {
+            "value": "cormorant_garamond",
+            "label": "Cormorant Garamond"
+          },
+          {
+            "value": "dm_sans",
+            "label": "DM Sans"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar_text",
+        "label": "Announcement Bar Text",
+        "default": "Free shipping on all orders over ₹1000"
+      },
+      {
+        "type": "color",
+        "id": "announcement_bar_bg",
+        "label": "Announcement Bar Background",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "primary_color",
+        "label": "Primary Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "secondary_color",
+        "label": "Secondary Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Copyright Text",
+        "default": "© 2025 Velour. All rights reserved."
+      }
+    ]
+  }
+]
