@@ -1,0 +1,96 @@
+<div id="products">
+  <div class="prods-wrap">
+    <div class="prods-hdr">
+      <div class="prods-hdr-left">
+        <span class="sec-eye">{{ section.settings.eyebrow | default: 'Featured This Season' }}</span>
+        <h2 class="sec-title" style="font-size:40px;">{{ section.settings.title | default: 'Most loved pieces' }}</h2>
+      </div>
+      <a href="/collections/all" class="view-all">View all products →</a>
+    </div>
+
+    <div class="prods-grid">
+      {%- assign featured = section.settings.collection.products | default: collections.all.products -%}
+      {%- for product in featured limit: 8 -%}
+        <div class="prod reveal {% cycle '', 'd1', 'd2', 'd3' %}">
+          <div class="prod-img-box">
+            <a href="{{ product.url }}">
+              <img
+                src="{{ product.featured_image | img_url: '500x' }}"
+                alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                loading="lazy">
+            </a>
+
+            {%- if product.tags contains 'new-in' -%}
+              <span class="prod-badge">New In</span>
+            {%- elsif product.tags contains 'bestseller' -%}
+              <span class="prod-badge sale">Bestseller</span>
+            {%- elsif product.tags contains 'trending' -%}
+              <span class="prod-badge">Trending</span>
+            {%- elsif product.tags contains 'low-stock' -%}
+              <span class="prod-badge sale">Low Stock</span>
+            {%- endif -%}
+
+            <div class="prod-actions">
+              {%- assign first_variant = product.variants.first -%}
+              {%- if first_variant.available -%}
+                <form action="/cart/add" method="post">
+                  <input type="hidden" name="id" value="{{ first_variant.id }}">
+                  <button type="submit" class="prod-btn">Add to Bag</button>
+                </form>
+              {%- else -%}
+                <button class="prod-btn" disabled style="opacity:0.5;">Sold Out</button>
+              {%- endif -%}
+              <button class="prod-btn wish" aria-label="Wishlist">♡</button>
+            </div>
+          </div>
+
+          {%- assign collection_tag = product.tags | first -%}
+          <p class="prod-coll">{{ product.type | default: collection_tag }}</p>
+          <h3 class="prod-name"><a href="{{ product.url }}" style="color:inherit;">{{ product.title }}</a></h3>
+
+          <div class="prod-price-row">
+            <span class="prod-price">{{ product.price | money }}</span>
+            {%- if product.compare_at_price > product.price -%}
+              <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
+              {%- assign saving = product.compare_at_price | minus: product.price -%}
+              {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="prod-off">{{ pct }}% off</span>
+            {%- endif -%}
+          </div>
+
+          {%- if product.options contains 'Color' -%}
+            <div class="prod-swatches">
+              {%- assign color_option_index = 0 -%}
+              {%- for option in product.options -%}
+                {%- if option == 'Color' -%}{%- assign color_option_index = forloop.index0 -%}{%- endif -%}
+              {%- endfor -%}
+              {%- assign shown = 0 -%}
+              {%- for variant in product.variants -%}
+                {%- if shown < 3 -%}
+                  {%- assign color_val = variant.options[color_option_index] | downcase | replace: ' ', '-' -%}
+                  <div class="swatch" style="background:var(--swatch-{{ color_val }}, #ccc);" title="{{ variant.options[color_option_index] }}"></div>
+                  {%- assign shown = shown | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if product.variants.size > 3 -%}
+                <span class="swatch-more">+{{ product.variants.size | minus: 3 }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "title", "label": "Title" },
+    { "type": "collection", "id": "collection", "label": "Collection to feature" }
+  ],
+  "presets": [{ "name": "Featured Products" }]
+}
+{% endschema %}

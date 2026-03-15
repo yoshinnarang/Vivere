@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }} — {{ shop.name }}</title>
+  <meta name="description" content="{{ page_description | escape }}">
+
+  {{ content_for_header }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  {{ 'velour.css' | asset_url | stylesheet_tag }}
+</head>
+<body>
+
+  {%- render 'announcement-bar' -%}
+  {%- render 'header' -%}
+
+  <main id="main-content">
+    {{ content_for_layout }}
+  </main>
+
+  {%- render 'footer' -%}
+
+  {{ 'velour.js' | asset_url | script_tag }}
+</body>
+</html>

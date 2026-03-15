@@ -1,0 +1,151 @@
+<div class="product-layout">
+
+  <!-- GALLERY -->
+  <div class="product-gallery">
+    <div class="gallery-thumbs">
+      {%- for image in product.images limit: 5 -%}
+        <div class="thumb {% if forloop.first %}active{% endif %}">
+          <img src="{{ image | img_url: '200x' }}" alt="{{ image.alt | escape | default: product.title }}">
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="gallery-main">
+      <img src="{{ product.featured_image | img_url: '900x' }}" alt="{{ product.title | escape }}" id="main-product-image">
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="product-info">
+    <p class="product-breadcrumb">
+      <a href="/">Home</a> /
+      <a href="{{ collection.url }}">{{ collection.title | default: 'Collections' }}</a> /
+      {{ product.title }}
+    </p>
+
+    {%- if product.tags contains 'new-in' -%}
+      <span class="prod-badge" style="position:static;display:inline-block;margin-bottom:16px;">New In</span>
+    {%- endif -%}
+
+    <h1 class="product-title">{{ product.title }}</h1>
+    <p class="product-collection">{{ product.type }}</p>
+
+    <div class="product-price-block">
+      <span class="product-price-main">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="product-price-compare">{{ product.compare_at_price | money }}</span>
+        {%- assign saving = product.compare_at_price | minus: product.price -%}
+        {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+        <span class="product-savings">{{ pct }}% off</span>
+      {%- endif -%}
+    </div>
+
+    <div class="product-divider"></div>
+
+    {%- assign color_option = nil -%}
+    {%- assign size_option = nil -%}
+    {%- for option in product.options -%}
+      {%- if option == 'Color' -%}{%- assign color_option = forloop.index0 -%}{%- endif -%}
+      {%- if option == 'Size' -%}{%- assign size_option = forloop.index0 -%}{%- endif -%}
+    {%- endfor -%}
+
+    <!-- SIZE -->
+    {%- if size_option -%}
+      <p class="option-label">Select Size <a href="/pages/size-guide" style="color:var(--mauve);font-weight:400;text-transform:none;letter-spacing:0;">Size Guide →</a></p>
+      <div class="size-grid">
+        {%- assign sizes_shown = '' -%}
+        {%- for variant in product.variants -%}
+          {%- assign s = variant.options[size_option] -%}
+          {%- unless sizes_shown contains s -%}
+            <button class="size-btn {% if forloop.first %}active{% endif %}" data-size="{{ s }}">{{ s }}</button>
+            {%- assign sizes_shown = sizes_shown | append: s | append: ',' -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <!-- COLOUR -->
+    {%- if color_option -%}
+      <p class="option-label">Colour</p>
+      <div class="color-grid">
+        {%- assign colors_shown = '' -%}
+        {%- for variant in product.variants -%}
+          {%- assign c = variant.options[color_option] -%}
+          {%- unless colors_shown contains c -%}
+            {%- assign c_key = c | downcase | replace: ' ', '-' -%}
+            <div class="color-opt {% if forloop.first %}active{% endif %}">
+              <div class="color-circle" style="background:var(--swatch-{{ c_key }}, #ccc);"></div>
+              <span class="color-name">{{ c }}</span>
+            </div>
+            {%- assign colors_shown = colors_shown | append: c | append: ',' -%}
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- form 'product', product -%}
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      {%- if product.variants.first.available -%}
+        <button type="submit" class="add-to-bag">Add to Bag</button>
+      {%- else -%}
+        <button type="button" class="add-to-bag" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>
+      {%- endif -%}
+    {%- endform -%}
+    <button class="wishlist-btn">♡ &nbsp;Add to Wishlist</button>
+
+    <div class="product-perks">
+      <div class="perk"><span class="perk-icon">✦</span> Free shipping above ₹999</div>
+      <div class="perk"><span class="perk-icon">○</span> 15-day easy returns</div>
+      <div class="perk"><span class="perk-icon">◇</span> COD available</div>
+      <div class="perk"><span class="perk-icon">△</span> Premium fabrics</div>
+    </div>
+
+    <div class="product-details">
+      <div class="detail-row">
+        <button class="detail-toggle">Product Details <span class="arr">+</span></button>
+        <div class="detail-body">{{ product.description }}</div>
+      </div>
+      <div class="detail-row">
+        <button class="detail-toggle">Fabric & Care <span class="arr">+</span></button>
+        <div class="detail-body">
+          {%- assign fabric_tag = product.tags | join: ',' -%}
+          Modal blend / Satin-finish cotton. Machine wash cold. Do not bleach. Tumble dry low.
+        </div>
+      </div>
+      <div class="detail-row">
+        <button class="detail-toggle">Shipping & Returns <span class="arr">+</span></button>
+        <div class="detail-body">
+          Free shipping on orders above ₹999. Standard delivery 3–5 business days. 
+          Easy 15-day returns — just raise a return request and we'll handle the rest.
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- COMPLETE THE SET -->
+{%- assign coll = product.collections.first -%}
+{%- if coll.products.size > 1 -%}
+<div style="padding: 0 48px 88px; max-width: 1440px; margin: 0 auto;">
+  <div class="sec-hdr" style="padding-top: 0; text-align: left; padding-left: 0;">
+    <span class="sec-eye">Complete the Set</span>
+    <h2 class="sec-title" style="font-size: 36px;">More from {{ coll.title }}</h2>
+  </div>
+  <div class="prods-grid">
+    {%- for related in coll.products limit: 4 -%}
+      {%- unless related.handle == product.handle -%}
+        <div class="prod reveal">
+          <div class="prod-img-box">
+            <a href="{{ related.url }}">
+              <img src="{{ related.featured_image | img_url: '500x' }}" alt="{{ related.title | escape }}" loading="lazy">
+            </a>
+          </div>
+          <p class="prod-coll">{{ related.type }}</p>
+          <h3 class="prod-name"><a href="{{ related.url }}" style="color:inherit;">{{ related.title }}</a></h3>
+          <p class="prod-price">{{ related.price | money }}</p>
+        </div>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}

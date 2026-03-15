@@ -1,0 +1,49 @@
+<div class="collection-header reveal">
+  <p class="sec-eye">{{ collection.title }}</p>
+  <h1 class="collection-title">{{ collection.title }}</h1>
+  {%- if collection.description != blank -%}
+    <p class="collection-desc">{{ collection.description }}</p>
+  {%- endif -%}
+</div>
+
+<div class="collection-grid">
+  {%- for product in collection.products -%}
+    <div class="prod reveal {% cycle '', 'd1', 'd2' %}">
+      <div class="prod-img-box">
+        <a href="{{ product.url }}">
+          <img
+            src="{{ product.featured_image | img_url: '500x' }}"
+            alt="{{ product.title | escape }}"
+            loading="lazy">
+        </a>
+        {%- if product.tags contains 'new-in' -%}
+          <span class="prod-badge">New In</span>
+        {%- elsif product.tags contains 'bestseller' -%}
+          <span class="prod-badge sale">Bestseller</span>
+        {%- endif -%}
+        <div class="prod-actions">
+          {%- if product.variants.first.available -%}
+            <form action="/cart/add" method="post">
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+              <button type="submit" class="prod-btn">Add to Bag</button>
+            </form>
+          {%- else -%}
+            <button class="prod-btn" disabled>Sold Out</button>
+          {%- endif -%}
+          <button class="prod-btn wish">♡</button>
+        </div>
+      </div>
+      <p class="prod-coll">{{ product.type }}</p>
+      <h3 class="prod-name"><a href="{{ product.url }}" style="color:inherit;">{{ product.title }}</a></h3>
+      <div class="prod-price-row">
+        <span class="prod-price">{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
+          {%- assign saving = product.compare_at_price | minus: product.price -%}
+          {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+          <span class="prod-off">{{ pct }}% off</span>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- endfor -%}
+</div>

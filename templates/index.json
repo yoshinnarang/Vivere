@@ -1,0 +1,110 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "hero_eyebrow": "SS 2025 — The Ivory Edit",
+        "hero_cta_text": "Shop the Collection",
+        "hero_secondary_text": "Our Story →"
+      }
+    },
+    "trust-strip": {
+      "type": "trust-strip"
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "ivory-edit": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "New Season · SS 2025",
+            "title": "The Ivory Edit",
+            "count": "14 styles from ₹999",
+            "link": "/collections/ivory-edit",
+            "cta": "Shop the Edit →",
+            "fallback_image_url": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=85&fit=crop&crop=top"
+          }
+        },
+        "mauve-nights": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Bestseller",
+            "title": "Mauve Nights",
+            "count": "11 styles from ₹1,099",
+            "link": "/collections/mauve-nights",
+            "cta": "Explore →",
+            "fallback_image_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=700&q=82&fit=crop&crop=top"
+          }
+        },
+        "satin-series": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Fan Favourite",
+            "title": "The Satin Series",
+            "count": "9 styles from ₹1,299",
+            "link": "/collections/satin-series",
+            "cta": "Shop now →",
+            "fallback_image_url": "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=700&q=82&fit=crop&crop=top"
+          }
+        },
+        "lace-ease": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "New Arrival",
+            "title": "Lace & Ease",
+            "count": "7 styles from ₹1,199",
+            "link": "/collections/lace-ease",
+            "cta": "Discover →",
+            "fallback_image_url": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=700&q=82&fit=crop&crop=top"
+          }
+        },
+        "silken-mornings": {
+          "type": "collection_card",
+          "settings": {
+            "tag": "Robes & Wraps",
+            "title": "Silken Mornings",
+            "count": "6 styles from ₹1,499",
+            "link": "/collections/silken-mornings",
+            "cta": "View →",
+            "fallback_image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4b4091?w=700&q=82&fit=crop&crop=top"
+          }
+        }
+      },
+      "block_order": ["ivory-edit","mauve-nights","satin-series","lace-ease","silken-mornings"],
+      "settings": {
+        "eyebrow": "Shop by Collection",
+        "title": "Curated for your nights",
+        "subtitle": "Four distinct edits — each a mood, a moment, a feeling."
+      }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "Featured This Season",
+        "title": "Most loved pieces"
+      }
+    },
+    "editorial": {
+      "type": "editorial-strip"
+    },
+    "promise": {
+      "type": "promise-section"
+    },
+    "testimonials": {
+      "type": "testimonials"
+    },
+    "instagram": {
+      "type": "instagram-section"
+    }
+  },
+  "order": [
+    "hero",
+    "trust-strip",
+    "featured-collections",
+    "featured-products",
+    "editorial",
+    "promise",
+    "testimonials",
+    "instagram"
+  ]
+}
