@@ -93,9 +93,9 @@
     "lookbook-banner": {
       "type": "lookbook-banner",
       "settings": {
-        "image_1": "shopify://shop_images/94d6b2c7-38b6-4c1b-98de-50619bedaf30_4e9c28f4-a67f-4a69-8a7f-65cd4bd2669b.jpg",
+        "image_1": "shopify://shop_images/7e3b338e-aeaf-491c-aac8-1632d4bb85db.jpg",
         "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&fit=crop&crop=top",
-        "image_2": "shopify://shop_images/7e3b338e-aeaf-491c-aac8-1632d4bb85db_867df89d-12fa-4c07-bdb8-581d796752ba.jpg",
+        "image_2": "shopify://shop_images/WhatsAppImage2026-03-20at6.34.30PM_1.jpg",
         "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
         "eyebrow": "SS’26",
         "title": "FRESH. FUN. FINESSE.",
