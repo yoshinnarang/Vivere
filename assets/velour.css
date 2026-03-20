@@ -2067,6 +2067,8 @@ footer {
 }
 .bs-card .prod-price { font-size: 14px; font-weight: 500; }
 .bs-card .prod-mrp { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
+.bs-card:hover .prod-img-box .prod-img-primary { opacity: 0; }
+.bs-card:hover .prod-img-box .prod-img-secondary { opacity: 1; transform: scale(1.03); }
 
 @media (max-width: 1024px) {
   .bs-wrap { padding: 0 40px; }
