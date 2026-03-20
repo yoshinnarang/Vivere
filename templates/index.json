@@ -93,7 +93,9 @@
     "lookbook-banner": {
       "type": "lookbook-banner",
       "settings": {
+        "image_1": "shopify://shop_images/94d6b2c7-38b6-4c1b-98de-50619bedaf30_4e9c28f4-a67f-4a69-8a7f-65cd4bd2669b.jpg",
         "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&fit=crop&crop=top",
+        "image_2": "shopify://shop_images/7e3b338e-aeaf-491c-aac8-1632d4bb85db_867df89d-12fa-4c07-bdb8-581d796752ba.jpg",
         "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
         "eyebrow": "SS’26",
         "title": "FRESH. FUN. FINESSE.",
@@ -105,12 +107,15 @@
     "image-grid": {
       "type": "image-grid",
       "settings": {
+        "image_1": "shopify://shop_images/Screenshot_2026-03-20_at_11.34.17_AM.png",
         "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=85&fit=crop&crop=top",
         "alt_1": "Vivere Satin Collection",
         "link_1": "",
+        "image_2": "shopify://shop_images/Morning_light_and_satin_glow.png",
         "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
         "alt_2": "Vivere Night Dress",
         "link_2": "",
+        "image_3": "shopify://shop_images/WhatsApp_Image_2026-03-20_at_6.34.41_PM.jpg",
         "fallback_3": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
         "alt_3": "Vivere Modal Collection",
         "link_3": ""
@@ -121,6 +126,7 @@
       "settings": {
         "eyebrow": "FEATURED THIS SEASON",
         "title": "Most loved pieces",
+        "image": "shopify://shop_images/5bf4e7ee-30e2-4db2-9ff4-e1c4b7b8a2d7_573d40e1-ee4e-48bc-a3ac-e41247b4f702.jpg",
         "image_fallback": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&q=80&fit=crop",
         "view_all_link": "/collections/all"
       }
