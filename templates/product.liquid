@@ -107,16 +107,11 @@
       </div>
       <div class="detail-row">
         <button class="detail-toggle">Fabric &amp; Care <span class="arr">+</span></button>
-        <div class="detail-body">
-          Premium modal blend with satin finish. Machine wash cold on gentle cycle. Do not bleach. Tumble dry low. Iron on low heat if needed.
-        </div>
+        <div class="detail-body">{{ product.metafields.custom.fabric_care | default: 'Care instructions coming soon.' }}</div>
       </div>
       <div class="detail-row">
         <button class="detail-toggle">Shipping &amp; Returns <span class="arr">+</span></button>
-        <div class="detail-body">
-          Free shipping on orders above &#8377;1,499. Standard delivery 3&ndash;5 business days.
-          Easy 15-day returns &mdash; raise a return request and we&rsquo;ll handle the pickup.
-        </div>
+        <div class="detail-body">{{ product.metafields.custom.shipping_returns | default: 'Shipping and returns information coming soon.' }}</div>
       </div>
     </div>
   </div>
