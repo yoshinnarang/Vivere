@@ -86,11 +86,7 @@
 
     {%- form 'product', product -%}
       <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      {%- if product.variants.first.available -%}
-        <button type="submit" class="add-to-bag">Add to Bag</button>
-      {%- else -%}
-        <button type="button" class="add-to-bag" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>
-      {%- endif -%}
+      <button type="submit" class="add-to-bag">Add to Bag</button>
     {%- endform -%}
 
     <div class="product-perks">
