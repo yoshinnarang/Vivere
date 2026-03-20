@@ -1,0 +1,84 @@
+<div id="new-arrivals">
+  <div class="na-wrap">
+    <div class="na-hdr reveal">
+      <div class="na-hdr-left">
+        <span class="sec-eye">{{ section.settings.eyebrow | default: 'Just Dropped' }}</span>
+        <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px);">{{ section.settings.title | default: 'New Arrivals' }}</h2>
+      </div>
+      <a href="{{ section.settings.link | default: '/collections/new-arrivals' }}" class="view-all">View all &rarr;</a>
+    </div>
+
+    <div class="na-scroll reveal">
+      {%- assign na_collection = section.settings.collection -%}
+      {%- assign na_products = na_collection.products | default: collections['new-arrivals'].products | default: collections.all.products -%}
+      {%- for product in na_products limit: 10 -%}
+        <div class="prod na-card">
+          <div class="prod-img-box">
+            <a href="{{ product.url }}">
+              {%- if product.images.size > 1 -%}
+                <img class="prod-img-primary"
+                  src="{{ product.images[0] | img_url: '500x' }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy">
+                <img class="prod-img-secondary"
+                  src="{{ product.images[1] | img_url: '500x' }}"
+                  alt="{{ product.title | escape }} - alternate"
+                  loading="lazy">
+              {%- else -%}
+                <img
+                  src="{{ product.featured_image | img_url: '500x' }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy">
+              {%- endif -%}
+            </a>
+
+            <span class="prod-badge new">New In</span>
+
+            {%- if product.compare_at_price > product.price -%}
+              {%- assign saving = product.compare_at_price | minus: product.price -%}
+              {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="prod-badge sale" style="top:auto;bottom:12px;left:12px;">-{{ pct }}%</span>
+            {%- endif -%}
+
+            <div class="prod-actions">
+              {%- assign first_variant = product.variants.first -%}
+              {%- if first_variant.available -%}
+                <form action="/cart/add" method="post">
+                  <input type="hidden" name="id" value="{{ first_variant.id }}">
+                  <button type="submit" class="prod-btn">Add to Bag</button>
+                </form>
+              {%- else -%}
+                <button class="prod-btn" disabled style="opacity:0.5;">Sold Out</button>
+              {%- endif -%}
+              <button class="prod-btn wish" aria-label="Add to wishlist">&#9825;</button>
+            </div>
+          </div>
+
+          <p class="prod-coll">{{ product.type }}</p>
+          <h3 class="prod-name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+
+          <div class="prod-price-row">
+            <span class="prod-price">{{ product.price | money }}</span>
+            {%- if product.compare_at_price > product.price -%}
+              <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
+              <span class="prod-off">{{ pct }}% off</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "New Arrivals",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Just Dropped" },
+    { "type": "text", "id": "title", "label": "Title", "default": "New Arrivals" },
+    { "type": "collection", "id": "collection", "label": "Collection to feature" },
+    { "type": "url", "id": "link", "label": "View all link" }
+  ],
+  "presets": [{ "name": "New Arrivals" }]
+}
+{% endschema %}

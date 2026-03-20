@@ -1,0 +1,57 @@
+<section class="editorial reveal-scale">
+  <div class="editorial-inner">
+    <div class="ed-imgs">
+      {%- if section.settings.image_1 != blank -%}
+        <div class="ed-img"><img src="{{ section.settings.image_1 | img_url: '800x' }}" alt="Vivere editorial" loading="lazy"></div>
+      {%- else -%}
+        <div class="ed-img"><img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=82&fit=crop&crop=top" alt="Vivere editorial" loading="lazy"></div>
+      {%- endif -%}
+      {%- if section.settings.image_2 != blank -%}
+        <div class="ed-img"><img src="{{ section.settings.image_2 | img_url: '800x' }}" alt="Vivere editorial" loading="lazy"></div>
+      {%- else -%}
+        <div class="ed-img"><img src="https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=800&q=82&fit=crop&crop=top" alt="Vivere editorial" loading="lazy"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="ed-content">
+      <span class="ed-eye">{{ section.settings.eyebrow | default: 'The Vivere Woman' }}</span>
+      <h2 class="ed-title">{{ section.settings.title | default: 'She doesn&rsquo;t just sleep. She <em>retreats.</em>' }}</h2>
+      <p class="ed-body">{{ section.settings.body | default: 'Every Vivere piece is designed for the woman who understands that luxury isn&rsquo;t about a price tag — it&rsquo;s about how something makes you feel. Buttery-soft modal, hand-finished lace, and satin that catches the light just so. This is nightwear elevated to ritual.' }}</p>
+
+      <div class="ed-stat-row stagger-children">
+        <div>
+          <div class="ed-stat-num" data-count="3200" data-suffix="+">0</div>
+          <div class="ed-stat-label">Happy customers</div>
+        </div>
+        <div>
+          <div class="ed-stat-num" data-count="49" data-suffix="">0</div>
+          <div class="ed-stat-label">Premium styles</div>
+        </div>
+        <div>
+          <div class="ed-stat-num" data-count="4" data-suffix=".9★">0</div>
+          <div class="ed-stat-label">Average rating</div>
+        </div>
+      </div>
+
+      <a href="{{ section.settings.cta_url | default: '/collections/all' }}" class="btn-primary" style="background:var(--ivory);color:var(--midnight);width:fit-content;">
+        <span>{{ section.settings.cta_text | default: 'Explore the Collection' }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Editorial Strip",
+  "settings": [
+    { "type": "image_picker", "id": "image_1", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Vivere Woman" },
+    { "type": "richtext", "id": "title", "label": "Title" },
+    { "type": "textarea", "id": "body", "label": "Body text" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Explore the Collection" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "presets": [{ "name": "Editorial Strip" }]
+}
+{% endschema %}

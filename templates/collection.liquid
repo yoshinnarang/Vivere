@@ -1,5 +1,5 @@
 <div class="collection-header reveal">
-  <p class="sec-eye">{{ collection.title }}</p>
+  <span class="sec-eye">{{ collection.title }}</span>
   <h1 class="collection-title">{{ collection.title }}</h1>
   {%- if collection.description != blank -%}
     <p class="collection-desc">{{ collection.description }}</p>
@@ -11,16 +11,37 @@
     <div class="prod reveal {% cycle '', 'd1', 'd2' %}">
       <div class="prod-img-box">
         <a href="{{ product.url }}">
-          <img
-            src="{{ product.featured_image | img_url: '500x' }}"
-            alt="{{ product.title | escape }}"
-            loading="lazy">
+          {%- if product.images.size > 1 -%}
+            <img class="prod-img-primary"
+              src="{{ product.featured_image | img_url: '500x' }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy">
+            <img class="prod-img-secondary"
+              src="{{ product.images[1] | img_url: '500x' }}"
+              alt="{{ product.title | escape }} - alternate"
+              loading="lazy">
+          {%- else -%}
+            <img
+              src="{{ product.featured_image | img_url: '500x' }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy">
+          {%- endif -%}
         </a>
+
         {%- if product.tags contains 'new-in' -%}
-          <span class="prod-badge">New In</span>
+          <span class="prod-badge new">New In</span>
         {%- elsif product.tags contains 'bestseller' -%}
-          <span class="prod-badge sale">Bestseller</span>
+          <span class="prod-badge bestseller">Bestseller</span>
+        {%- elsif product.tags contains 'trending' -%}
+          <span class="prod-badge trending">Trending</span>
         {%- endif -%}
+
+        {%- if product.compare_at_price > product.price -%}
+          {%- assign saving = product.compare_at_price | minus: product.price -%}
+          {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+          <span class="prod-badge sale" style="top:auto;bottom:12px;left:12px;">-{{ pct }}%</span>
+        {%- endif -%}
+
         <div class="prod-actions">
           {%- if product.variants.first.available -%}
             <form action="/cart/add" method="post">
@@ -28,22 +49,38 @@
               <button type="submit" class="prod-btn">Add to Bag</button>
             </form>
           {%- else -%}
-            <button class="prod-btn" disabled>Sold Out</button>
+            <button class="prod-btn" disabled style="opacity:0.5;">Sold Out</button>
           {%- endif -%}
-          <button class="prod-btn wish">♡</button>
         </div>
       </div>
       <p class="prod-coll">{{ product.type }}</p>
-      <h3 class="prod-name"><a href="{{ product.url }}" style="color:inherit;">{{ product.title }}</a></h3>
+      <h3 class="prod-name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
       <div class="prod-price-row">
         <span class="prod-price">{{ product.price | money }}</span>
         {%- if product.compare_at_price > product.price -%}
           <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
-          {%- assign saving = product.compare_at_price | minus: product.price -%}
-          {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
           <span class="prod-off">{{ pct }}% off</span>
         {%- endif -%}
       </div>
+      {%- if product.options contains 'Color' -%}
+        <div class="prod-swatches">
+          {%- assign color_option_index = 0 -%}
+          {%- for option in product.options -%}
+            {%- if option == 'Color' -%}{%- assign color_option_index = forloop.index0 -%}{%- endif -%}
+          {%- endfor -%}
+          {%- assign shown = 0 -%}
+          {%- for variant in product.variants -%}
+            {%- if shown < 4 -%}
+              {%- assign color_val = variant.options[color_option_index] | downcase | replace: ' ', '-' -%}
+              <div class="swatch" style="background:var(--swatch-{{ color_val }}, #ccc);" title="{{ variant.options[color_option_index] }}"></div>
+              {%- assign shown = shown | plus: 1 -%}
+            {%- endif -%}
+          {%- endfor -%}
+          {%- if product.variants.size > 4 -%}
+            <span class="swatch-more">+{{ product.variants.size | minus: 4 }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   {%- endfor -%}
 </div>

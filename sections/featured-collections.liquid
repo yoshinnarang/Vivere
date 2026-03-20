@@ -1,8 +1,9 @@
 <div id="collections">
   <div class="sec-hdr reveal">
-    <span class="sec-eye">{{ section.settings.eyebrow | default: 'Shop by Collection' }}</span>
-    <h2 class="sec-title">{{ section.settings.title | default: 'Curated for your nights' }}</h2>
-    <p class="sec-sub">{{ section.settings.subtitle | default: 'Four distinct edits — each a mood, a moment, a feeling.' }}</p>
+    <span class="sec-eye">{{ section.settings.eyebrow | default: 'Curated Collections' }}</span>
+    <h2 class="sec-title">{{ section.settings.title | default: 'Find your <em>mood</em>' }}</h2>
+    <p class="sec-sub">{{ section.settings.subtitle | default: 'Five distinct edits — each a mood, a moment, a feeling. Discover yours.' }}</p>
+    <div class="sec-line"></div>
   </div>
 
   <div class="colls-wrap">
@@ -28,7 +29,7 @@
             <p class="coll-tag">{{ block.settings.tag }}</p>
             <h3 class="coll-name">{{ block.settings.title }}</h3>
             <p class="coll-count">{{ block.settings.count }}</p>
-            <a href="{{ block.settings.link }}" class="coll-cta">{{ block.settings.cta | default: 'Shop now →' }}</a>
+            <a href="{{ block.settings.link }}" class="coll-cta">{{ block.settings.cta | default: 'Explore' }} &rarr;</a>
           </div>
         </div>
       {%- endfor -%}
@@ -40,8 +41,8 @@
 {
   "name": "Collections Grid",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by Collection" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Curated for your nights" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Curated Collections" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Find your mood" },
     { "type": "text", "id": "subtitle", "label": "Subtitle" }
   ],
   "blocks": [
@@ -55,7 +56,7 @@
         { "type": "text", "id": "title", "label": "Collection name" },
         { "type": "text", "id": "count", "label": "Item count text" },
         { "type": "url", "id": "link", "label": "Link" },
-        { "type": "text", "id": "cta", "label": "CTA text", "default": "Shop now →" }
+        { "type": "text", "id": "cta", "label": "CTA text", "default": "Explore" }
       ]
     }
   ],

@@ -1,0 +1,22 @@
+<section class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    {%- for i in (1..2) -%}
+      <div class="marquee-item"><span class="marquee-dot"></span> Premium Satin</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Handcrafted with Love</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Modal Blends</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Designed in India</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Affordable Luxury</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Free Shipping</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> Lace Details</div>
+      <div class="marquee-item"><span class="marquee-dot"></span> The Vivere Woman</div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee Strip",
+  "settings": [],
+  "presets": [{ "name": "Marquee Strip" }]
+}
+{% endschema %}

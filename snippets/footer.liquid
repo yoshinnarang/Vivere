@@ -1,18 +1,18 @@
 <footer>
   <div class="ftr-top">
     <div>
-      <div class="ftr-brand">{{ shop.name }}</div>
-      <p class="ftr-tagline">Luxury nightwear for every woman.<br>Because every night deserves to feel beautiful.</p>
+      <div class="ftr-brand">Vivere</div>
+      <p class="ftr-tagline">Luxury nightwear for the woman who knows she deserves more. Because every night should feel like a retreat.</p>
       <div class="ftr-social">
         <a href="{{ settings.instagram_url }}" aria-label="Instagram">IG</a>
         <a href="{{ settings.facebook_url }}" aria-label="Facebook">FB</a>
         <a href="{{ settings.youtube_url }}" aria-label="YouTube">YT</a>
         <a href="{{ settings.pinterest_url }}" aria-label="Pinterest">PI</a>
       </div>
-      <p class="nl-label">Stay in the loop</p>
+      <p class="ftr-nl-label">Stay in the loop</p>
       {% form 'customer' %}
-        <div class="nl-row">
-          <input class="nl-input" type="email" name="contact[email]" placeholder="Enter your email" required>
+        <div class="nl-form" style="max-width:320px;">
+          <input class="nl-input" type="email" name="contact[email]" placeholder="Your email address" required>
           <button type="submit" class="nl-btn">Join</button>
         </div>
       {% endform %}
@@ -20,44 +20,39 @@
 
     <div class="ftr-col">
       <p class="ftr-col-title">Shop</p>
+      <a href="/collections/all">All Products</a>
       <a href="/collections/night-sets">Night Sets</a>
       <a href="/collections/night-dresses">Night Dresses</a>
-      <a href="/collections/robes">Robes &amp; Wraps</a>
-      <a href="/collections/separates">Separates</a>
       <a href="/collections/new-arrivals">New Arrivals</a>
-      <a href="/collections/sale">Sale</a>
+      <a href="/collections/bestsellers">Bestsellers</a>
     </div>
 
     <div class="ftr-col">
       <p class="ftr-col-title">Help</p>
       <a href="/pages/size-guide">Size Guide</a>
-      <a href="/pages/shipping">Shipping Info</a>
+      <a href="/pages/track-order">Track Order</a>
       <a href="/pages/returns">Returns</a>
-      <a href="/pages/track-order">Track My Order</a>
       <a href="/pages/faq">FAQ</a>
       <a href="/pages/contact">Contact Us</a>
     </div>
 
     <div class="ftr-col">
-      <p class="ftr-col-title">Velour</p>
+      <p class="ftr-col-title">Vivere</p>
       <a href="/pages/our-story">Our Story</a>
-      <a href="/pages/sustainability">Sustainability</a>
-      <a href="/pages/fabric-guide">Fabric Guide</a>
-      <a href="/pages/careers">Careers</a>
-      <a href="/pages/press">Press</a>
     </div>
   </div>
 
   <div class="ftr-btm">
-    <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+    <span>&copy; {{ 'now' | date: '%Y' }} Vivere. All rights reserved.</span>
     <div class="payment-icons">
       <span class="pay-icon">Razorpay</span>
       <span class="pay-icon">UPI</span>
       <span class="pay-icon">COD</span>
       <span class="pay-icon">Visa</span>
+      <span class="pay-icon">Mastercard</span>
     </div>
     <span>
-      <a href="/policies/privacy-policy" style="color:inherit;">Privacy</a> ·
+      <a href="/policies/privacy-policy" style="color:inherit;">Privacy</a> &middot;
       <a href="/policies/terms-of-service" style="color:inherit;">Terms</a>
     </span>
   </div>

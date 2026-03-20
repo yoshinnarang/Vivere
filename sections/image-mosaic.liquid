@@ -1,0 +1,70 @@
+<section class="img-mosaic-section">
+  <div class="mosaic-grid">
+    {%- for block in section.blocks -%}
+      {%- assign size_class = block.settings.size | default: 'normal' -%}
+      {%- if size_class == 'tall' -%}
+        {%- assign size_class = 'mosaic-tall' -%}
+      {%- elsif size_class == 'tall-3' -%}
+        {%- assign size_class = 'mosaic-tall-3' -%}
+      {%- elsif size_class == 'wide' -%}
+        {%- assign size_class = 'mosaic-wide' -%}
+      {%- endif -%}
+      <a href="{{ block.settings.link | default: '/collections/all' }}"
+         class="mosaic-cell {{ size_class }}"
+         {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.alt | default: 'Vivere' | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ block.settings.fallback_url }}" alt="{{ block.settings.alt | default: 'Vivere' | escape }}" loading="lazy">
+        {%- endif -%}
+        {%- if block.settings.caption != blank -%}
+          <span class="mosaic-caption">{{ block.settings.caption }}</span>
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image Mosaic",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "mosaic_image",
+      "name": "Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_url", "label": "Fallback image URL" },
+        { "type": "text", "id": "alt", "label": "Alt text" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "caption", "label": "Caption overlay (optional)" },
+        {
+          "type": "select",
+          "id": "size",
+          "label": "Size",
+          "default": "normal",
+          "options": [
+            { "value": "normal", "label": "Normal" },
+            { "value": "tall", "label": "Tall (spans 2 rows)" },
+            { "value": "tall-3", "label": "Tall (spans 3 rows)" },
+            { "value": "wide", "label": "Wide (spans 2 columns)" }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [{
+    "name": "Image Mosaic",
+    "blocks": [
+      { "type": "mosaic_image", "settings": { "size": "normal", "fallback_url": "https://images.unsplash.com/photo-1631044551703-7e09d8e6acc6?w=500&h=500&q=80&fit=crop" } },
+      { "type": "mosaic_image", "settings": { "size": "tall", "fallback_url": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=500&h=900&q=80&fit=crop" } },
+      { "type": "mosaic_image", "settings": { "size": "normal", "fallback_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=500&h=500&q=80&fit=crop" } },
+      { "type": "mosaic_image", "settings": { "size": "normal", "fallback_url": "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=500&h=500&q=80&fit=crop" } },
+      { "type": "mosaic_image", "settings": { "size": "normal", "fallback_url": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=500&h=500&q=80&fit=crop" } },
+      { "type": "mosaic_image", "settings": { "size": "tall", "fallback_url": "https://images.unsplash.com/photo-1594938298603-c8148c4b4091?w=500&h=900&q=80&fit=crop" } }
+    ]
+  }]
+}
+{% endschema %}

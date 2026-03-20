@@ -1,0 +1,53 @@
+<section class="lookbook-banner">
+  <div class="lb-inner">
+    <div class="lb-images">
+      <div class="lb-img lb-img-main">
+        {%- if section.settings.image_1 != blank -%}
+          <img src="{{ section.settings.image_1 | img_url: '900x' }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ section.settings.fallback_1 | default: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=900&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="lb-img lb-img-overlap">
+        {%- if section.settings.image_2 != blank -%}
+          <img src="{{ section.settings.image_2 | img_url: '600x' }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ section.settings.fallback_2 | default: 'https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=600&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.title | escape }}" loading="lazy">
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="lb-content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="lb-eyebrow">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="lb-title">{{ section.settings.title | default: 'The Moonlit Collection' }}</h2>
+      {%- if section.settings.body != blank -%}
+        <p class="lb-body">{{ section.settings.body }}</p>
+      {%- endif -%}
+      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="lb-cta">
+        {{ section.settings.cta_text | default: 'Shop Now' }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lookbook Banner",
+  "settings": [
+    { "type": "header", "content": "Images" },
+    { "type": "image_picker", "id": "image_1", "label": "Main image (large, left)" },
+    { "type": "text", "id": "fallback_1", "label": "Main image fallback URL" },
+    { "type": "image_picker", "id": "image_2", "label": "Overlap image (smaller, right)" },
+    { "type": "text", "id": "fallback_2", "label": "Overlap image fallback URL" },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "SS'26" },
+    { "type": "text", "id": "title", "label": "Title", "default": "FRESH. FUN. FINESSE." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Embrace the season with vibrant energy and effortless ease. Reimagining rest with breathable fabrics and a palette of pure joy." },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop Now" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Lookbook Banner" }]
+}
+{% endschema %}

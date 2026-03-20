@@ -1,0 +1,46 @@
+<div class="account-page reveal" style="max-width:800px;margin:0 auto;padding:60px 20px;">
+  <h1 class="sec-title" style="margin-bottom:8px;">My Account</h1>
+  <p style="color:var(--text-light);margin-bottom:40px;">Welcome back, {{ customer.first_name }}. <a href="/account/logout" style="color:var(--caramel);">Log out</a></p>
+
+  <div class="account-grid">
+    <div class="account-section">
+      <h2 style="font-family:var(--serif);font-size:22px;margin-bottom:20px;">Order History</h2>
+      {%- if customer.orders.size > 0 -%}
+        <table class="account-table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for order in customer.orders -%}
+              <tr>
+                <td><a href="{{ order.customer_url }}" style="color:var(--caramel);">{{ order.name }}</a></td>
+                <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      {%- else -%}
+        <p style="color:var(--text-light);">You haven&rsquo;t placed any orders yet.</p>
+        <a href="/collections/all" class="btn btn-primary" style="margin-top:16px;">Start Shopping</a>
+      {%- endif -%}
+    </div>
+
+    <div class="account-section" style="margin-top:40px;">
+      <h2 style="font-family:var(--serif);font-size:22px;margin-bottom:20px;">Default Address</h2>
+      {%- if customer.default_address -%}
+        <p>{{ customer.default_address | format_address }}</p>
+        <a href="/account/addresses" style="color:var(--caramel);font-size:14px;">Manage addresses</a>
+      {%- else -%}
+        <p style="color:var(--text-light);">No address saved yet.</p>
+        <a href="/account/addresses" style="color:var(--caramel);font-size:14px;">Add an address</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>

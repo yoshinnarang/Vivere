@@ -1,0 +1,61 @@
+<div id="video-banner" class="vb-section">
+  <div class="vb-inner">
+    {%- if section.settings.video_url != blank -%}
+      <video
+        class="vb-video"
+        src="{{ section.settings.video_url }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        poster="{{ section.settings.fallback_image }}">
+      </video>
+    {%- else -%}
+      <div class="vb-img">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | img_url: '1400x' }}"
+               alt="{{ section.settings.title | escape }}"
+               loading="lazy">
+        {%- else -%}
+          <img src="{{ section.settings.fallback_image }}"
+               alt="{{ section.settings.title | escape }}"
+               loading="lazy">
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="vb-overlay"></div>
+
+    <div class="vb-content reveal">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="vb-eye">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
+      <h2 class="vb-title">{{ section.settings.title | default: 'The Moonlit Collection' }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="vb-subtitle">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="btn-primary">
+        {{ section.settings.cta_text | default: 'Shop Now' }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Video Banner",
+  "settings": [
+    { "type": "header", "content": "Media" },
+    { "type": "text", "id": "video_url", "label": "Video URL (MP4 — upload to Files and paste URL here)" },
+    { "type": "image_picker", "id": "image", "label": "Fallback image (if no video)" },
+    { "type": "text", "id": "fallback_image", "label": "Fallback image URL", "default": "https://images.unsplash.com/photo-1631044551703-7e09d8e6acc6?w=1400&q=88&fit=crop&crop=top" },
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "New Season \u00b7 2025" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The Moonlit Collection" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Premium nightwear for every night ritual." },
+    { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop Now" },
+    { "type": "url", "id": "cta_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Video Banner" }]
+}
+{% endschema %}

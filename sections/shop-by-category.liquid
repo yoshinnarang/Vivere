@@ -1,0 +1,62 @@
+<div id="shop-by-category">
+  <div class="sbc-wrap">
+    <div class="sec-hdr reveal">
+      <span class="sec-eye">{{ section.settings.eyebrow | default: 'Explore' }}</span>
+      <h2 class="sec-title">{{ section.settings.title | default: 'Shop by Category' }}</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="sbc-grid">
+      {%- for block in section.blocks -%}
+        <a href="{{ block.settings.link | default: '/collections/all' }}"
+           class="sbc-card reveal {% cycle '', 'd1', 'd2', 'd3' %}"
+           {{ block.shopify_attributes }}>
+          <div class="sbc-img-box">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | img_url: '600x750' }}"
+                   alt="{{ block.settings.title | escape }}"
+                   loading="lazy">
+            {%- else -%}
+              <img src="{{ block.settings.fallback_url }}"
+                   alt="{{ block.settings.title | escape }}"
+                   loading="lazy">
+            {%- endif -%}
+            <div class="sbc-overlay"></div>
+          </div>
+          <div class="sbc-info">
+            <h3 class="sbc-name">{{ block.settings.title }}</h3>
+            {%- if block.settings.count != blank -%}
+              <span class="sbc-count">{{ block.settings.count }}</span>
+            {%- endif -%}
+            <span class="sbc-cta">Shop Now &rarr;</span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Explore" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Shop by Category" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_url", "label": "Fallback Image URL" },
+        { "type": "text", "id": "title", "label": "Category Name", "default": "Night Sets" },
+        { "type": "text", "id": "count", "label": "Item count", "default": "24 styles" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [{ "name": "Shop by Category" }]
+}
+{% endschema %}

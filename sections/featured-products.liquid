@@ -1,11 +1,11 @@
 <div id="products">
   <div class="prods-wrap">
-    <div class="prods-hdr">
+    <div class="prods-hdr reveal">
       <div class="prods-hdr-left">
-        <span class="sec-eye">{{ section.settings.eyebrow | default: 'Featured This Season' }}</span>
-        <h2 class="sec-title" style="font-size:40px;">{{ section.settings.title | default: 'Most loved pieces' }}</h2>
+        <span class="sec-eye">{{ section.settings.eyebrow | default: 'Most Loved' }}</span>
+        <h2 class="sec-title" style="font-size:clamp(28px,3vw,40px);">{{ section.settings.title | default: 'Pieces she can&rsquo;t stop buying' }}</h2>
       </div>
-      <a href="/collections/all" class="view-all">View all products →</a>
+      <a href="/collections/all" class="view-all">View all &rarr;</a>
     </div>
 
     <div class="prods-grid">
@@ -14,20 +14,37 @@
         <div class="prod reveal {% cycle '', 'd1', 'd2', 'd3' %}">
           <div class="prod-img-box">
             <a href="{{ product.url }}">
-              <img
-                src="{{ product.featured_image | img_url: '500x' }}"
-                alt="{{ product.featured_image.alt | escape | default: product.title }}"
-                loading="lazy">
+              {%- if product.images.size > 1 -%}
+                <img class="prod-img-primary"
+                  src="{{ product.images[0] | img_url: '500x' }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy">
+                <img class="prod-img-secondary"
+                  src="{{ product.images[1] | img_url: '500x' }}"
+                  alt="{{ product.title | escape }} - alternate"
+                  loading="lazy">
+              {%- else -%}
+                <img
+                  src="{{ product.featured_image | img_url: '500x' }}"
+                  alt="{{ product.title | escape }}"
+                  loading="lazy">
+              {%- endif -%}
             </a>
 
             {%- if product.tags contains 'new-in' -%}
-              <span class="prod-badge">New In</span>
+              <span class="prod-badge new">New In</span>
             {%- elsif product.tags contains 'bestseller' -%}
-              <span class="prod-badge sale">Bestseller</span>
+              <span class="prod-badge bestseller">Bestseller</span>
             {%- elsif product.tags contains 'trending' -%}
-              <span class="prod-badge">Trending</span>
+              <span class="prod-badge trending">Trending</span>
             {%- elsif product.tags contains 'low-stock' -%}
-              <span class="prod-badge sale">Low Stock</span>
+              <span class="prod-badge low-stock">Only Few Left</span>
+            {%- endif -%}
+
+            {%- if product.compare_at_price > product.price -%}
+              {%- assign saving = product.compare_at_price | minus: product.price -%}
+              {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
+              <span class="prod-badge sale" style="top:auto;bottom:12px;left:12px;">-{{ pct }}%</span>
             {%- endif -%}
 
             <div class="prod-actions">
@@ -40,20 +57,17 @@
               {%- else -%}
                 <button class="prod-btn" disabled style="opacity:0.5;">Sold Out</button>
               {%- endif -%}
-              <button class="prod-btn wish" aria-label="Wishlist">♡</button>
+              <button class="prod-btn wish" aria-label="Add to wishlist">&#9825;</button>
             </div>
           </div>
 
-          {%- assign collection_tag = product.tags | first -%}
-          <p class="prod-coll">{{ product.type | default: collection_tag }}</p>
-          <h3 class="prod-name"><a href="{{ product.url }}" style="color:inherit;">{{ product.title }}</a></h3>
+          <p class="prod-coll">{{ product.type }}</p>
+          <h3 class="prod-name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
 
           <div class="prod-price-row">
             <span class="prod-price">{{ product.price | money }}</span>
             {%- if product.compare_at_price > product.price -%}
               <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
-              {%- assign saving = product.compare_at_price | minus: product.price -%}
-              {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
               <span class="prod-off">{{ pct }}% off</span>
             {%- endif -%}
           </div>
@@ -66,14 +80,14 @@
               {%- endfor -%}
               {%- assign shown = 0 -%}
               {%- for variant in product.variants -%}
-                {%- if shown < 3 -%}
+                {%- if shown < 4 -%}
                   {%- assign color_val = variant.options[color_option_index] | downcase | replace: ' ', '-' -%}
                   <div class="swatch" style="background:var(--swatch-{{ color_val }}, #ccc);" title="{{ variant.options[color_option_index] }}"></div>
                   {%- assign shown = shown | plus: 1 -%}
                 {%- endif -%}
               {%- endfor -%}
-              {%- if product.variants.size > 3 -%}
-                <span class="swatch-more">+{{ product.variants.size | minus: 3 }}</span>
+              {%- if product.variants.size > 4 -%}
+                <span class="swatch-more">+{{ product.variants.size | minus: 4 }}</span>
               {%- endif -%}
             </div>
           {%- endif -%}

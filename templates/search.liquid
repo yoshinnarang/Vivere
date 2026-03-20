@@ -1,0 +1,55 @@
+<div class="search-page reveal">
+  <div class="search-wrap">
+    <h1 class="sec-title" style="text-align:center;margin-bottom:32px;">Search</h1>
+
+    <form action="/search" method="get" class="search-form" role="search">
+      <input type="text" name="q" value="{{ search.terms | escape }}" placeholder="Search for nightwear, satin, modal..." class="search-input" aria-label="Search">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <p class="search-count" style="text-align:center;color:var(--text-light);margin:24px 0 40px;">{{ search.results_count }} {{ search.results_count | pluralize: 'result', 'results' }} for &ldquo;{{ search.terms }}&rdquo;</p>
+
+        <div class="collection-grid">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              <div class="prod reveal {% cycle '', 'd1', 'd2' %}">
+                <div class="prod-img-box">
+                  <a href="{{ item.url }}">
+                    <img src="{{ item.featured_image | img_url: '500x' }}" alt="{{ item.title | escape }}" loading="lazy">
+                  </a>
+                </div>
+                <p class="prod-coll">{{ item.type }}</p>
+                <h3 class="prod-name"><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                <div class="prod-price-row">
+                  <span class="prod-price">{{ item.price | money }}</span>
+                  {%- if item.compare_at_price > item.price -%}
+                    <span class="prod-mrp">{{ item.compare_at_price | money }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- else -%}
+              <div class="search-result-item reveal" style="padding:20px 0;border-bottom:1px solid var(--border);">
+                <h3><a href="{{ item.url }}">{{ item.title }}</a></h3>
+                <p style="color:var(--text-light);font-size:14px;">{{ item.content | strip_html | truncatewords: 30 }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if search.results_count > search.results.size -%}
+          <div class="pagination" style="text-align:center;margin-top:40px;">
+            {{ paginate | default_pagination }}
+          </div>
+        {%- endif -%}
+
+      {%- else -%}
+        <div style="text-align:center;padding:60px 20px;">
+          <p style="color:var(--text-light);margin-bottom:24px;">No results found for &ldquo;{{ search.terms }}&rdquo;</p>
+          <a href="/collections/all" class="btn btn-primary">Browse All Products</a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<section class="img-grid-section">
+  <div class="ig-layout">
+    <a href="{{ section.settings.link_1 | default: '/collections/all' }}" class="ig-main">
+      {%- if section.settings.image_1 != blank -%}
+        <img src="{{ section.settings.image_1 | img_url: '1200x' }}" alt="{{ section.settings.alt_1 | escape }}" loading="lazy">
+      {%- else -%}
+        <img src="{{ section.settings.fallback_1 | default: 'https://images.unsplash.com/photo-1631044551703-7e09d8e6acc6?w=1200&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.alt_1 | default: 'Vivere collection' | escape }}" loading="lazy">
+      {%- endif -%}
+    </a>
+    <div class="ig-stack">
+      <a href="{{ section.settings.link_2 | default: '/collections/all' }}" class="ig-stack-item">
+        {%- if section.settings.image_2 != blank -%}
+          <img src="{{ section.settings.image_2 | img_url: '600x' }}" alt="{{ section.settings.alt_2 | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ section.settings.fallback_2 | default: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.alt_2 | default: 'Vivere collection' | escape }}" loading="lazy">
+        {%- endif -%}
+      </a>
+      <a href="{{ section.settings.link_3 | default: '/collections/all' }}" class="ig-stack-item">
+        {%- if section.settings.image_3 != blank -%}
+          <img src="{{ section.settings.image_3 | img_url: '600x' }}" alt="{{ section.settings.alt_3 | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ section.settings.fallback_3 | default: 'https://images.unsplash.com/photo-1594938298603-c8148c4b4091?w=600&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.alt_3 | default: 'Vivere collection' | escape }}" loading="lazy">
+        {%- endif -%}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Image Grid",
+  "settings": [
+    { "type": "header", "content": "Large image (left)" },
+    { "type": "image_picker", "id": "image_1", "label": "Main image" },
+    { "type": "text", "id": "fallback_1", "label": "Fallback URL" },
+    { "type": "text", "id": "alt_1", "label": "Alt text", "default": "Vivere collection" },
+    { "type": "url", "id": "link_1", "label": "Link" },
+    { "type": "header", "content": "Top-right image" },
+    { "type": "image_picker", "id": "image_2", "label": "Image" },
+    { "type": "text", "id": "fallback_2", "label": "Fallback URL" },
+    { "type": "text", "id": "alt_2", "label": "Alt text", "default": "Vivere collection" },
+    { "type": "url", "id": "link_2", "label": "Link" },
+    { "type": "header", "content": "Bottom-right image" },
+    { "type": "image_picker", "id": "image_3", "label": "Image" },
+    { "type": "text", "id": "fallback_3", "label": "Fallback URL" },
+    { "type": "text", "id": "alt_3", "label": "Alt text", "default": "Vivere collection" },
+    { "type": "url", "id": "link_3", "label": "Link" }
+  ],
+  "presets": [{ "name": "Image Grid" }]
+}
+{% endschema %}

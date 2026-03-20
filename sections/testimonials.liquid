@@ -1,0 +1,66 @@
+<section class="testis">
+  <div class="sec-hdr reveal">
+    <span class="sec-eye">What She Says</span>
+    <h2 class="sec-title">Loved by <em>thousands</em></h2>
+    <p class="sec-sub">Real words from real women who made Vivere part of their nightly ritual.</p>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="testi-grid stagger-children">
+    {%- for block in section.blocks -%}
+      <div class="testi-card" {{ block.shopify_attributes }}>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testi-q">{{ block.settings.quote }}</p>
+        <p class="testi-who">{{ block.settings.name }}</p>
+        <p class="testi-prod">{{ block.settings.product }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Customer name" },
+        { "type": "text", "id": "product", "label": "Product purchased" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Testimonials",
+    "blocks": [
+      {
+        "type": "testimonial",
+        "settings": {
+          "quote": "I've never felt anything this soft against my skin. The satin finish is absolutely divine — I ordered three more the same week.",
+          "name": "Priya M. — Mumbai",
+          "product": "Moonlit Satin Set"
+        }
+      },
+      {
+        "type": "testimonial",
+        "settings": {
+          "quote": "Finally, nightwear that makes me feel beautiful without costing a fortune. The fit is perfect, the fabric is heavenly. Vivere is my new obsession.",
+          "name": "Ananya R. — Bangalore",
+          "product": "Ivory Lace Coord"
+        }
+      },
+      {
+        "type": "testimonial",
+        "settings": {
+          "quote": "My husband noticed before I even said anything. That's when you know it's good. The quality rivals brands that cost 3x more.",
+          "name": "Meera S. — Delhi",
+          "product": "Blush Modal Night Dress"
+        }
+      }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,105 @@
+<section class="featured-section">
+  <div class="featured-wrap">
+    <div class="featured-hdr">
+      <div class="featured-hdr-left">
+        <span class="featured-eyebrow">{{ section.settings.eyebrow | default: 'FEATURED THIS SEASON' }}</span>
+        <h2 class="featured-title">{{ section.settings.title | default: 'Most loved pieces' }}</h2>
+      </div>
+      <div class="featured-hdr-right">
+        <a href="{{ section.settings.view_all_link | default: '/collections/all' }}" class="featured-view-all">VIEW ALL →</a>
+      </div>
+    </div>
+
+    <div class="featured-content">
+      <div class="featured-image">
+        <img src="{{ section.settings.image_fallback }}" alt="Featured collection" loading="lazy">
+      </div>
+      <div class="featured-text">
+        <span class="featured-label">OUR PHILOSOPHY</span>
+        <h3 class="featured-subtitle">Every woman deserves to feel <em>beautiful.</em></h3>
+        <p class="featured-body">Velour was born from a simple frustration — why should luxury nightwear cost a month's salary? We set out to close the gap between aspiration and access. Premium modal blends, satin finishes, considered lace detailing — all at prices that feel like an act of everyday self-love.</p>
+        <div class="featured-stats">
+          <div class="stat">
+            <div class="stat-number" data-target="4200">0</div>
+            <div class="stat-label">HAPPY CUSTOMERS</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-target="41">0</div>
+            <div class="stat-label">CURATED STYLES</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-target="4.9">0</div>
+            <div class="stat-label">AVG RATING</div>
+          </div>
+        </div>
+        <a href="/pages/our-story" class="featured-btn">READ OUR STORY</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  const statsSection = document.querySelector('.featured-stats');
+  if (!statsSection) return;
+
+  const counters = statsSection.querySelectorAll('.stat-number');
+  let hasAnimated = false;
+
+  const animateCounters = () => {
+    if (hasAnimated) return;
+    hasAnimated = true;
+
+    counters.forEach(counter => {
+      const target = parseFloat(counter.getAttribute('data-target'));
+      const isRating = target < 10; // 4.9 is a rating
+      const duration = 2000; // 2 seconds
+      const start = Date.now();
+
+      const animate = () => {
+        const elapsed = Date.now() - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = target * progress;
+
+        if (isRating) {
+          counter.textContent = current.toFixed(1) + '★';
+        } else {
+          counter.textContent = Math.floor(current).toLocaleString() + '+';
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      animate();
+    });
+  };
+
+  // Trigger animation when section comes into view
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(statsSection);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Featured Section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "FEATURED THIS SEASON" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Most loved pieces" },
+    { "type": "image_picker", "id": "image", "label": "Featured image" },
+    { "type": "text", "id": "image_fallback", "label": "Fallback image URL" },
+    { "type": "url", "id": "view_all_link", "label": "View all link" }
+  ],
+  "presets": [{ "name": "Featured Section" }]
+}
+{% endschema %}

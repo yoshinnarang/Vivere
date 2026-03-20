@@ -1,0 +1,22 @@
+<div class="collections-page reveal">
+  <span class="sec-eye">Browse</span>
+  <h1 class="sec-title" style="text-align:center;margin-bottom:40px;">All Collections</h1>
+
+  <div class="collections-grid">
+    {%- for collection in collections -%}
+      {%- unless collection.handle == 'frontpage' -%}
+        <a href="{{ collection.url }}" class="collection-card-link reveal {% cycle '', 'd1', 'd2' %}">
+          <div class="collection-card-img">
+            {%- if collection.image -%}
+              <img src="{{ collection.image | img_url: '600x600' }}" alt="{{ collection.title | escape }}" loading="lazy">
+            {%- elsif collection.products.first -%}
+              <img src="{{ collection.products.first.featured_image | img_url: '600x600' }}" alt="{{ collection.title | escape }}" loading="lazy">
+            {%- endif -%}
+          </div>
+          <h3 class="collection-card-title">{{ collection.title }}</h3>
+          <p class="collection-card-count">{{ collection.products_count }} {{ collection.products_count | pluralize: 'piece', 'pieces' }}</p>
+        </a>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+</div>

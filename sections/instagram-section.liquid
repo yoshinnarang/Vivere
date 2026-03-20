@@ -1,0 +1,50 @@
+<section class="insta">
+  <div class="insta-hdr reveal">
+    <span class="sec-eye">Follow the Ritual</span>
+    <h2 class="sec-title" style="font-size:clamp(28px,3.5vw,44px);">@vivere.nightwear</h2>
+    <p class="insta-handle">Join our community of 12K+ women who live beautifully</p>
+  </div>
+
+  <div class="insta-grid">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.link | default: '#' }}" class="insta-cell" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+        {%- if block.settings.image != blank -%}
+          <img src="{{ block.settings.image | img_url: '400x400' }}" alt="Vivere on Instagram" loading="lazy">
+        {%- else -%}
+          <img src="{{ block.settings.fallback_url }}" alt="Vivere on Instagram" loading="lazy">
+        {%- endif -%}
+        <span class="insta-icon">&#9825;</span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "insta_image",
+      "name": "Instagram Image",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "fallback_url", "label": "Fallback image URL" },
+        { "type": "url", "id": "link", "label": "Post link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [{
+    "name": "Instagram Section",
+    "blocks": [
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1631044551703-7e09d8e6acc6?w=400&h=400&q=80&fit=crop" } },
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=400&h=400&q=80&fit=crop" } },
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=400&h=400&q=80&fit=crop" } },
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=400&h=400&q=80&fit=crop" } },
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=400&h=400&q=80&fit=crop" } },
+      { "type": "insta_image", "settings": { "fallback_url": "https://images.unsplash.com/photo-1594938298603-c8148c4b4091?w=400&h=400&q=80&fit=crop" } }
+    ]
+  }]
+}
+{% endschema %}

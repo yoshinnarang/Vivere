@@ -2,109 +2,117 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {
-        "hero_eyebrow": "SS 2025 — The Ivory Edit",
-        "hero_cta_text": "Shop the Collection",
-        "hero_secondary_text": "Our Story →"
-      }
-    },
-    "trust-strip": {
-      "type": "trust-strip"
-    },
-    "featured-collections": {
-      "type": "featured-collections",
       "blocks": {
-        "ivory-edit": {
-          "type": "collection_card",
+        "slide-1": {
+          "type": "slide",
           "settings": {
-            "tag": "New Season · SS 2025",
-            "title": "The Ivory Edit",
-            "count": "14 styles from ₹999",
-            "link": "/collections/ivory-edit",
-            "cta": "Shop the Edit →",
-            "fallback_image_url": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=800&q=85&fit=crop&crop=top"
+            "eyebrow": "The Moonlit Collection — 2025",
+            "title": "<p>Nights that feel like <em>luxury.<\/em><\/p>",
+            "subtitle": "Premium nightwear crafted for the modern Indian woman. Satin finishes, modal blends, hand-finished lace.",
+            "cta_text": "Shop the Collection",
+            "secondary_text": "Our Story",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
           }
         },
-        "mauve-nights": {
-          "type": "collection_card",
+        "slide-2": {
+          "type": "slide",
           "settings": {
-            "tag": "Bestseller",
-            "title": "Mauve Nights",
-            "count": "11 styles from ₹1,099",
-            "link": "/collections/mauve-nights",
-            "cta": "Explore →",
-            "fallback_image_url": "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa1e?w=700&q=82&fit=crop&crop=top"
+            "eyebrow": "New Arrivals",
+            "title": "<p>The <em>Satin<\/em> Series<\/p>",
+            "subtitle": "Buttery-soft satin that catches the light just so. 9 new styles starting at \u20b91,599.",
+            "cta_text": "Shop Satin",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
           }
         },
-        "satin-series": {
-          "type": "collection_card",
+        "slide-3": {
+          "type": "slide",
           "settings": {
-            "tag": "Fan Favourite",
-            "title": "The Satin Series",
-            "count": "9 styles from ₹1,299",
-            "link": "/collections/satin-series",
-            "cta": "Shop now →",
-            "fallback_image_url": "https://images.unsplash.com/photo-1571513722275-4b41940f54b8?w=700&q=82&fit=crop&crop=top"
-          }
-        },
-        "lace-ease": {
-          "type": "collection_card",
-          "settings": {
-            "tag": "New Arrival",
-            "title": "Lace & Ease",
-            "count": "7 styles from ₹1,199",
-            "link": "/collections/lace-ease",
-            "cta": "Discover →",
-            "fallback_image_url": "https://images.unsplash.com/photo-1584735175315-9d5df23be620?w=700&q=82&fit=crop&crop=top"
-          }
-        },
-        "silken-mornings": {
-          "type": "collection_card",
-          "settings": {
-            "tag": "Robes & Wraps",
-            "title": "Silken Mornings",
-            "count": "6 styles from ₹1,499",
-            "link": "/collections/silken-mornings",
-            "cta": "View →",
-            "fallback_image_url": "https://images.unsplash.com/photo-1594938298603-c8148c4b4091?w=700&q=82&fit=crop&crop=top"
+            "eyebrow": "Affordable Luxury",
+            "title": "<p>Feel extraordinary, <em>every night.<\/em><\/p>",
+            "subtitle": "Premium quality at honest prices. All styles under \u20b92,000.",
+            "cta_text": "Explore All",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
           }
         }
       },
-      "block_order": ["ivory-edit","mauve-nights","satin-series","lace-ease","silken-mornings"],
+      "block_order": ["slide-1", "slide-2", "slide-3"]
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "blocks": {
+        "tab-1": {
+          "type": "tab",
+          "settings": {
+            "label": "Night Sets",
+            "handle": "night-sets"
+          }
+        },
+        "tab-2": {
+          "type": "tab",
+          "settings": {
+            "label": "Night Dress",
+            "handle": "night-dress"
+          }
+        }
+      },
+      "block_order": ["tab-1", "tab-2"],
       "settings": {
-        "eyebrow": "Shop by Collection",
-        "title": "Curated for your nights",
-        "subtitle": "Four distinct edits — each a mood, a moment, a feeling."
+        "title": "Best Sellers"
       }
     },
-    "featured-products": {
-      "type": "featured-products",
+    "lookbook-banner": {
+      "type": "lookbook-banner",
       "settings": {
-        "eyebrow": "Featured This Season",
-        "title": "Most loved pieces"
+        "eyebrow": "SS\u201926",
+        "title": "FRESH. FUN. FINESSE.",
+        "body": "Embrace the season with vibrant energy and effortless ease. Reimagining rest with breathable fabrics and a palette of pure joy, keeping you cool, spirited, and chic through every sun-drenched moment.",
+        "cta_text": "Shop Now",
+        "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&fit=crop&crop=top",
+        "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top"
       }
     },
-    "editorial": {
-      "type": "editorial-strip"
+    "image-grid": {
+      "type": "image-grid",
+      "settings": {
+        "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=85&fit=crop&crop=top",
+        "alt_1": "Vivere Satin Collection",
+        "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
+        "alt_2": "Vivere Night Dress",
+        "fallback_3": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
+        "alt_3": "Vivere Modal Collection"
+      }
     },
-    "promise": {
-      "type": "promise-section"
+    "featured-section": {
+      "type": "featured-section",
+      "settings": {
+        "eyebrow": "FEATURED THIS SEASON",
+        "title": "Most loved pieces",
+        "image_fallback": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=600&q=80&fit=crop",
+        "view_all_link": "/collections/all"
+      }
     },
-    "testimonials": {
-      "type": "testimonials"
+    "benefits-section": {
+      "type": "benefits-section",
+      "settings": {
+        "background": "#f5f1eb"
+      }
     },
-    "instagram": {
-      "type": "instagram-section"
+    "reviews-section": {
+      "type": "reviews-section",
+      "settings": {
+        "title": "Worn. Loved. Repeated.",
+        "stars": "4.9",
+        "review_count": "2,400+"
+      }
     }
   },
   "order": [
     "hero",
-    "trust-strip",
-    "featured-collections",
-    "featured-products",
-    "editorial",
-    "promise",
-    "testimonials",
-    "instagram"
+    "bestsellers",
+    "lookbook-banner",
+    "image-grid",
+    "featured-section",
+    "benefits-section",
+    "reviews-section"
   ]
 }

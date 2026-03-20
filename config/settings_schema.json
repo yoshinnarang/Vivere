@@ -1,6 +1,6 @@
 [
   {
-    "name": "Velour Theme Settings",
+    "name": "Vivere Theme Settings",
     "settings": [
       {
         "type": "header",
@@ -12,47 +12,81 @@
         "label": "Heading Font",
         "default": "cormorant_garamond",
         "options": [
-          {
-            "value": "cormorant_garamond",
-            "label": "Cormorant Garamond"
-          },
-          {
-            "value": "dm_sans",
-            "label": "DM Sans"
-          }
+          { "value": "cormorant_garamond", "label": "Cormorant Garamond" },
+          { "value": "dm_sans", "label": "DM Sans" }
         ]
       },
       {
         "type": "header",
-        "content": "Header"
+        "content": "Announcement Bar"
       },
       {
         "type": "text",
         "id": "announcement_bar_text",
         "label": "Announcement Bar Text",
-        "default": "Free shipping on all orders over ₹1000"
+        "default": "Complimentary shipping on orders above ₹1,499"
       },
       {
         "type": "color",
         "id": "announcement_bar_bg",
         "label": "Announcement Bar Background",
-        "default": "#000000"
+        "default": "#0D0A0E"
       },
       {
         "type": "header",
-        "content": "Colors"
+        "content": "Brand Colors"
       },
       {
         "type": "color",
         "id": "primary_color",
-        "label": "Primary Color",
-        "default": "#000000"
+        "label": "Primary Color (Midnight)",
+        "default": "#0D0A0E"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color (Caramel)",
+        "default": "#C4A47A"
       },
       {
         "type": "color",
         "id": "secondary_color",
-        "label": "Secondary Color",
-        "default": "#FFFFFF"
+        "label": "Background Color (Ivory)",
+        "default": "#FAF7F4"
+      },
+      {
+        "type": "header",
+        "content": "Social Media"
+      },
+      {
+        "type": "text",
+        "id": "instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "facebook_url",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "youtube_url",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "text",
+        "id": "pinterest_url",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "header",
+        "content": "WhatsApp"
+      },
+      {
+        "type": "text",
+        "id": "whatsapp_number",
+        "label": "WhatsApp Number (without +91)",
+        "default": "9999999999"
       },
       {
         "type": "header",
@@ -62,7 +96,7 @@
         "type": "text",
         "id": "copyright_text",
         "label": "Copyright Text",
-        "default": "© 2025 Velour. All rights reserved."
+        "default": "© 2025 Vivere. All rights reserved."
       }
     ]
   }

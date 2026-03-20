@@ -1,0 +1,45 @@
+<div class="account-page reveal" style="max-width:800px;margin:0 auto;padding:60px 20px;">
+  <a href="/account" style="color:var(--caramel);font-size:14px;">&larr; Back to Account</a>
+  <h1 class="sec-title" style="margin:16px 0 8px;">Order {{ order.name }}</h1>
+  <p style="color:var(--text-light);margin-bottom:32px;">Placed on {{ order.created_at | date: '%B %d, %Y' }}</p>
+
+  <table class="account-table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {%- for line_item in order.line_items -%}
+        <tr>
+          <td>
+            <strong>{{ line_item.title }}</strong>
+            {%- unless line_item.variant.title == 'Default Title' -%}
+              <br><span style="color:var(--text-light);font-size:13px;">{{ line_item.variant.title }}</span>
+            {%- endunless -%}
+          </td>
+          <td>{{ line_item.quantity }}</td>
+          <td>{{ line_item.final_line_price | money }}</td>
+        </tr>
+      {%- endfor -%}
+    </tbody>
+  </table>
+
+  <div style="margin-top:24px;text-align:right;">
+    <p>Subtotal: {{ order.subtotal_price | money }}</p>
+    {%- for shipping_method in order.shipping_methods -%}
+      <p>Shipping ({{ shipping_method.title }}): {{ shipping_method.price | money }}</p>
+    {%- endfor -%}
+    {%- for tax_line in order.tax_lines -%}
+      <p>Tax ({{ tax_line.title }}): {{ tax_line.price | money }}</p>
+    {%- endfor -%}
+    <p style="font-size:18px;font-weight:500;margin-top:8px;"><strong>Total: {{ order.total_price | money }}</strong></p>
+  </div>
+
+  <div style="margin-top:32px;">
+    <h3 style="font-family:var(--serif);font-size:18px;margin-bottom:8px;">Shipping Address</h3>
+    <p>{{ order.shipping_address | format_address }}</p>
+  </div>
+</div>

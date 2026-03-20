@@ -1,0 +1,34 @@
+<section class="benefits-section" style="background: {{ section.settings.background | default: '#f5f1eb' }};">
+  <div class="benefits-wrap">
+    <div class="benefit-item">
+      <span class="benefit-icon">✦</span>
+      <h3 class="benefit-title">PREMIUM FABRICS</h3>
+      <p class="benefit-text">Modal, satin-finish cotton & bamboo blends — the same materials worn by women who never compromise.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">◇</span>
+      <h3 class="benefit-title">ATTAINABLE LUXURY</h3>
+      <p class="benefit-text">Designed to rival the world's finest sleepwear — without the guilt. Indulgence, redefined.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">○</span>
+      <h3 class="benefit-title">EFFORTLESS RETURNS</h3>
+      <p class="benefit-text">15 days to decide. If it doesn't feel perfect, send it back — no questions, no hassle.</p>
+    </div>
+    <div class="benefit-item">
+      <span class="benefit-icon">△</span>
+      <h3 class="benefit-title">DELIVERED TO YOUR DOOR</h3>
+      <p class="benefit-text">Complimentary shipping across India. Cash on delivery available at every pin code.</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefits Section",
+  "settings": [
+    { "type": "color", "id": "background", "label": "Background color", "default": "#f5f1eb" }
+  ],
+  "presets": [{ "name": "Benefits Section" }]
+}
+{% endschema %}

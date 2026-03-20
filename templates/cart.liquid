@@ -1,0 +1,65 @@
+<div class="cart-page">
+  <div class="cart-wrap reveal">
+    <h1 class="sec-title" style="text-align:center;margin-bottom:12px;">Your Bag</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <p class="cart-count" style="text-align:center;color:var(--text-light);margin-bottom:40px;">{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }}</p>
+
+      <form action="/cart" method="post" class="cart-form">
+        <div class="cart-items">
+          {%- for item in cart.items -%}
+            <div class="cart-item">
+              <div class="cart-item-img">
+                <a href="{{ item.url }}">
+                  <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title | escape }}" loading="lazy">
+                </a>
+              </div>
+              <div class="cart-item-details">
+                <h3 class="cart-item-title"><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+                {%- unless item.variant.title == 'Default Title' -%}
+                  <p class="cart-item-variant">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                <div class="cart-item-price-row">
+                  <span class="prod-price">{{ item.final_line_price | money }}</span>
+                  {%- if item.original_line_price > item.final_line_price -%}
+                    <span class="prod-mrp">{{ item.original_line_price | money }}</span>
+                  {%- endif -%}
+                </div>
+                <div class="cart-qty-row">
+                  <label class="cart-qty-label" for="qty-{{ item.key }}">Qty:</label>
+                  <input class="cart-qty" type="number" name="updates[]" id="qty-{{ item.key }}" value="{{ item.quantity }}" min="0" aria-label="Quantity">
+                </div>
+                <a href="/cart/change?id={{ item.key }}&quantity=0" class="cart-remove">Remove</a>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="cart-summary">
+          {%- if cart.cart_level_discount_applications.size > 0 -%}
+            <div class="cart-discounts">
+              {%- for discount in cart.cart_level_discount_applications -%}
+                <p class="cart-discount-line">{{ discount.title }}: -{{ discount.total_allocated_amount | money }}</p>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+          <div class="cart-subtotal">
+            <span>Subtotal</span>
+            <span class="cart-subtotal-amount">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="cart-note" style="color:var(--text-light);font-size:13px;margin:8px 0 20px;">Shipping & taxes calculated at checkout</p>
+          <button type="submit" name="checkout" class="btn btn-primary cart-checkout-btn">Proceed to Checkout</button>
+          <a href="/collections/all" class="cart-continue">Continue Shopping &rarr;</a>
+        </div>
+
+        <button type="submit" name="update" class="btn btn-outline" style="margin-top:16px;">Update Bag</button>
+      </form>
+
+    {%- else -%}
+      <div class="cart-empty" style="text-align:center;padding:80px 20px;">
+        <p style="font-size:18px;color:var(--text-light);margin-bottom:24px;">Your bag is empty</p>
+        <a href="/collections/all" class="btn btn-primary">Start Shopping</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

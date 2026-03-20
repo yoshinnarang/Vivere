@@ -1,100 +1,205 @@
 /* =========================================
-   VELOUR — LUXURY NIGHTWEAR
-   Main JavaScript v1.0
+   VIVERE — LUXURY NIGHTWEAR FOR WOMEN
+   Premium JavaScript v3.0
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ── SCROLL REVEAL ── */
-  const revealEls = document.querySelectorAll('.reveal');
+  /* ═══════════════════════════════════════
+     HERO SWIPER CAROUSEL
+     ═══════════════════════════════════════ */
+  if (typeof Swiper !== 'undefined' && document.querySelector('.hero-swiper')) {
+    new Swiper('.hero-swiper', {
+      loop: true,
+      speed: 900,
+      autoplay: {
+        delay: 5500,
+        disableOnInteraction: false,
+      },
+      effect: 'fade',
+      fadeEffect: { crossFade: true },
+      pagination: {
+        el: '.hero-carousel .swiper-pagination',
+        clickable: true,
+      },
+    });
+  }
+
+  /* ═══════════════════════════════════════
+     HEADER — SCROLL SHADOW
+     ═══════════════════════════════════════ */
+  const header = document.getElementById('site-header');
+  if (header) {
+    function updateHeader() {
+      if (window.pageYOffset > 10) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateHeader, { passive: true });
+    updateHeader();
+  }
+
+  /* ═══════════════════════════════════════
+     MOBILE MENU
+     ═══════════════════════════════════════ */
+  const menuToggle = document.querySelector('.menu-toggle');
+  const mobileNav = document.querySelector('.mobile-nav');
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', function () {
+      this.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        menuToggle.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════
+     SCROLL REVEAL
+     ═══════════════════════════════════════ */
+  var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length > 0) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
         if (e.isIntersecting) e.target.classList.add('in');
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-    revealEls.forEach(el => io.observe(el));
+    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  /* ── PRODUCT GALLERY THUMBS ── */
-  const thumbs = document.querySelectorAll('.thumb');
-  const mainImg = document.querySelector('.gallery-main img');
+  /* ═══════════════════════════════════════
+     PRODUCT GALLERY THUMBS (Product Page)
+     ═══════════════════════════════════════ */
+  var thumbs = document.querySelectorAll('.thumb');
+  var mainImg = document.querySelector('.gallery-main img');
   if (thumbs.length && mainImg) {
-    thumbs.forEach(thumb => {
+    thumbs.forEach(function (thumb) {
       thumb.addEventListener('click', function () {
-        thumbs.forEach(t => t.classList.remove('active'));
+        thumbs.forEach(function (t) { t.classList.remove('active'); });
         this.classList.add('active');
-        mainImg.src = this.querySelector('img').src;
+        var newSrc = this.querySelector('img').src;
+        mainImg.style.opacity = '0';
+        setTimeout(function () {
+          mainImg.src = newSrc;
+          mainImg.style.opacity = '1';
+        }, 200);
       });
     });
   }
 
-  /* ── SIZE SELECTOR ── */
-  const sizeBtns = document.querySelectorAll('.size-btn');
-  sizeBtns.forEach(btn => {
+  /* ═══════════════════════════════════════
+     SIZE SELECTOR
+     ═══════════════════════════════════════ */
+  document.querySelectorAll('.size-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      sizeBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
     });
   });
 
-  /* ── COLOR SELECTOR ── */
-  const colorOpts = document.querySelectorAll('.color-opt');
-  colorOpts.forEach(opt => {
+  /* ═══════════════════════════════════════
+     COLOR SELECTOR
+     ═══════════════════════════════════════ */
+  document.querySelectorAll('.color-opt').forEach(function (opt) {
     opt.addEventListener('click', function () {
-      colorOpts.forEach(o => o.classList.remove('active'));
+      document.querySelectorAll('.color-opt').forEach(function (o) { o.classList.remove('active'); });
       this.classList.add('active');
     });
   });
 
-  /* ── DETAIL ACCORDION ── */
-  const detailToggles = document.querySelectorAll('.detail-toggle');
-  detailToggles.forEach(toggle => {
+  /* ═══════════════════════════════════════
+     DETAIL ACCORDION (Product Page)
+     ═══════════════════════════════════════ */
+  document.querySelectorAll('.detail-toggle').forEach(function (toggle) {
     toggle.addEventListener('click', function () {
-      const body = this.nextElementSibling;
-      const isOpen = body.classList.contains('open');
-      document.querySelectorAll('.detail-body').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.detail-toggle span.arr').forEach(a => a.textContent = '+');
+      var body = this.nextElementSibling;
+      var isOpen = body.classList.contains('open');
+      document.querySelectorAll('.detail-body').forEach(function (b) { b.classList.remove('open'); });
+      document.querySelectorAll('.detail-toggle .arr').forEach(function (a) { a.textContent = '+'; });
       if (!isOpen) {
         body.classList.add('open');
-        this.querySelector('.arr').textContent = '−';
+        this.querySelector('.arr').textContent = '\u2212';
       }
     });
   });
 
-  /* ── CART ADD FEEDBACK ── */
-  document.querySelectorAll('.prod-btn:not(.wish)').forEach(btn => {
-    btn.addEventListener('click', function (e) {
-      const orig = this.textContent;
-      this.textContent = 'Added ✓';
-      this.style.background = 'var(--rose)';
-      setTimeout(() => {
-        this.textContent = orig;
-        this.style.background = '';
+  /* ═══════════════════════════════════════
+     QUICK ADD TO CART FEEDBACK
+     ═══════════════════════════════════════ */
+  document.querySelectorAll('.prod-btn:not(.wish)').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = this;
+      var orig = el.textContent;
+      el.textContent = 'Added \u2713';
+      el.style.background = 'var(--rose)';
+      setTimeout(function () {
+        el.textContent = orig;
+        el.style.background = '';
       }, 1800);
     });
   });
 
-  /* ── ANNOUNCEMENT BAR CAROUSEL ── */
-  const annMsgs = [
-    'Free shipping above ₹999 · Use code VELOUR10 for 10% off',
-    'New drop: The Ivory Edit — Shop Now',
-    'Easy 15-day returns · COD available pan-India',
-    '4.9★ rated by 2,400+ customers'
+  /* ═══════════════════════════════════════
+     ANNOUNCEMENT BAR ROTATION
+     ═══════════════════════════════════════ */
+  var annMsgs = [
+    'Complimentary shipping on orders above \u20B91,499',
+    'New Season: The Moonlit Collection \u2014 Shop Now',
+    '4.9\u2605 rated by 3,200+ women across India'
   ];
-  const annEl = document.querySelector('.ann');
+  var annEl = document.querySelector('.ann');
   if (annEl) {
-    let i = 0;
-    setInterval(() => {
-      i = (i + 1) % annMsgs.length;
+    var msgIndex = 0;
+    setInterval(function () {
+      msgIndex = (msgIndex + 1) % annMsgs.length;
       annEl.style.opacity = '0';
-      setTimeout(() => {
-        const seps = annEl.querySelectorAll('.ann-sep');
-        const textNodes = [...annEl.childNodes].filter(n => n.nodeType === 3);
-        if (textNodes[0]) textNodes[0].textContent = ' ' + annMsgs[i] + ' ';
+      setTimeout(function () {
+        var textNodes = [];
+        annEl.childNodes.forEach(function (n) {
+          if (n.nodeType === 3) textNodes.push(n);
+        });
+        if (textNodes[0]) textNodes[0].textContent = ' ' + annMsgs[msgIndex] + ' ';
         annEl.style.opacity = '1';
       }, 300);
-    }, 4000);
+    }, 4500);
+  }
+
+  /* ═══════════════════════════════════════
+     COUNTER ANIMATION (Editorial Stats)
+     ═══════════════════════════════════════ */
+  var statNums = document.querySelectorAll('.ed-stat-num[data-count]');
+  if (statNums.length) {
+    var countObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-count'));
+          var suffix = el.getAttribute('data-suffix') || '';
+          var duration = 2000;
+          var start = performance.now();
+
+          function tick(now) {
+            var elapsed = now - start;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(target * eased).toLocaleString('en-IN') + suffix;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(function (el) { countObserver.observe(el); });
   }
 
 });

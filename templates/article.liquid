@@ -1,0 +1,46 @@
+<div class="article-page reveal">
+  <div class="article-wrap">
+    <a href="{{ blog.url }}" class="article-back">&larr; Back to {{ blog.title }}</a>
+    <span class="blog-date">{{ article.published_at | date: '%B %d, %Y' }}</span>
+    <h1 class="sec-title" style="margin-bottom:24px;">{{ article.title }}</h1>
+
+    {%- if article.image -%}
+      <div class="article-hero-img">
+        <img src="{{ article.image | img_url: '1200x' }}" alt="{{ article.title | escape }}" loading="lazy">
+      </div>
+    {%- endif -%}
+
+    <div class="rte article-content">
+      {{ article.content }}
+    </div>
+
+    {%- if article.tags.size > 0 -%}
+      <div class="article-tags">
+        {%- for tag in article.tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handleize }}">{{ tag }}</a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if blog.comments_enabled? -%}
+      <div class="article-comments">
+        <h3 style="margin-bottom:20px;">Comments ({{ article.comments_count }})</h3>
+        {%- for comment in article.comments -%}
+          <div class="comment">
+            <p class="comment-author">{{ comment.author }}</p>
+            <p class="comment-body">{{ comment.content }}</p>
+            <span class="comment-date">{{ comment.created_at | date: '%B %d, %Y' }}</span>
+          </div>
+        {%- endfor -%}
+
+        {% form 'new_comment', article %}
+          <h4>Leave a comment</h4>
+          <input type="text" name="comment[author]" placeholder="Your name" required>
+          <input type="email" name="comment[email]" placeholder="Your email" required>
+          <textarea name="comment[body]" placeholder="Your comment" rows="4" required></textarea>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+        {% endform %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

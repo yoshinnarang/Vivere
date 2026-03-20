@@ -1,0 +1,222 @@
+<div id="bestsellers">
+  <div class="bs-wrap">
+    <div class="bs-hdr reveal">
+      <div class="bs-hdr-left">
+        <h2 class="bs-heading">{{ section.settings.title | default: 'Best Sellers' }}</h2>
+      </div>
+      <div class="bs-hdr-right">
+        <!-- Category tabs -->
+        <div class="bs-tabs" role="tablist">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              <button class="bs-tab {% if forloop.first %}active{% endif %}"
+                role="tab"
+                data-tab="{{ block.settings.handle }}"
+                {{ block.shopify_attributes }}>
+                {{ block.settings.label }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <div class="bs-arrows">
+          <button class="bs-arrow bs-arrow-prev" aria-label="Previous">&larr;</button>
+          <button class="bs-arrow bs-arrow-next" aria-label="Next">&rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="bs-scroll-wrap">
+      <!-- NIGHT SETS TAB CONTENT -->
+      <div class="bs-scroll reveal" data-tab="night-sets" style="display: flex;">
+        {%- assign sets_handles = "bliss-pop-short-set-1,cozy-check-set-1,modal-comfort-set,lace-elegance-set,silk-touch-set,comfort-blend-set" | split: "," -%}
+        {%- assign sets_products = "Bliss Pop Short Set,Cozy Check Set,Modal Comfort Set,Lace Elegance Set,Silk Touch Set,Comfort Blend Set" | split: "," -%}
+        {%- assign sets_prices = "1799,1599,1799,2099,1899,1699" | split: "," -%}
+        {%- for i in (0..5) -%}
+          <div class="prod bs-card">
+            <div class="prod-img-box">
+              <a href="/products/{{ sets_handles[i] }}">
+                <img class="prod-img-primary"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=667&q=80&fit=crop"
+                  alt="{{ sets_products[i] }}"
+                  loading="lazy">
+              </a>
+              <span class="prod-badge {% if i == 0 %}new{% elsif i == 1 %}bestseller{% endif %}">
+                {%- if i == 0 -%}New In{%- elsif i == 1 -%}Bestseller{%- endif -%}
+              </span>
+              <div class="prod-actions">
+                <button type="button" class="prod-btn add-to-cart" data-product-handle="{{ sets_handles[i] }}">Add to Bag</button>
+              </div>
+            </div>
+
+            <h3 class="prod-name"><a href="/products/{{ sets_handles[i] }}">{{ sets_products[i] }}</a></h3>
+
+            <div class="prod-price-row">
+              <span class="prod-price">Rs {{ sets_prices[i] }}.00</span>
+            </div>
+          </div>
+        {%- endfor -%}
+
+        <!-- VIEW ALL CARD -->
+        <div class="prod bs-card bs-viewall">
+          <div class="prod-img-box" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
+            <div style="text-align: center;">
+              <h3 class="prod-name" style="font-size: 18px; margin-bottom: 8px;">Night Sets</h3>
+              <a href="/collections/night-sets" style="text-decoration: underline; color: var(--midnight); font-size: 14px;">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NIGHT DRESS TAB CONTENT -->
+      <div class="bs-scroll reveal" data-tab="night-dress" style="display: none;">
+        {%- assign dress_handles = "satin-glow-nightdress,artisan-edit-wide-pyjama,velvet-touch-nightdress,silk-dreams-robe,ethereal-slip-dress,premium-night-gown" | split: "," -%}
+        {%- assign dress_products = "Satin Glow Nightdress,Artisan Edit Wide Pyjama,Velvet Touch Nightdress,Silk Dreams Robe,Ethereal Slip Dress,Premium Night Gown" | split: "," -%}
+        {%- assign dress_prices = "2199,2599,1899,2499,2299,2799" | split: "," -%}
+        {%- for i in (0..5) -%}
+          <div class="prod bs-card">
+            <div class="prod-img-box">
+              <a href="/products/{{ dress_handles[i] }}">
+                <img class="prod-img-primary"
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=667&q=80&fit=crop"
+                  alt="{{ dress_products[i] }}"
+                  loading="lazy">
+              </a>
+              <span class="prod-badge {% if i == 0 %}new{% elsif i == 2 %}bestseller{% endif %}">
+                {%- if i == 0 -%}New In{%- elsif i == 2 -%}Bestseller{%- endif -%}
+              </span>
+              <div class="prod-actions">
+                <button type="button" class="prod-btn add-to-cart" data-product-handle="{{ dress_handles[i] }}">Add to Bag</button>
+              </div>
+            </div>
+
+            <h3 class="prod-name"><a href="/products/{{ dress_handles[i] }}">{{ dress_products[i] }}</a></h3>
+
+            <div class="prod-price-row">
+              <span class="prod-price">Rs {{ dress_prices[i] }}.00</span>
+            </div>
+          </div>
+        {%- endfor -%}
+
+        <!-- VIEW ALL CARD -->
+        <div class="prod bs-card bs-viewall">
+          <div class="prod-img-box" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
+            <div style="text-align: center;">
+              <h3 class="prod-name" style="font-size: 18px; margin-bottom: 8px;">Night Dress</h3>
+              <a href="/collections/night-dress" style="text-decoration: underline; color: var(--midnight); font-size: 14px;">View all</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bestsellerSection = document.getElementById('bestsellers');
+  if (!bestsellerSection) return;
+
+  var prevBtn = bestsellerSection.querySelector('.bs-arrow-prev');
+  var nextBtn = bestsellerSection.querySelector('.bs-arrow-next');
+  var scrollAmt = 340;
+
+  // Scroll arrow functionality
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      var activeScroll = bestsellerSection.querySelector('.bs-scroll[style*="display: flex"]');
+      if (activeScroll) {
+        activeScroll.scrollBy({ left: -scrollAmt, behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      var activeScroll = bestsellerSection.querySelector('.bs-scroll[style*="display: flex"]');
+      if (activeScroll) {
+        activeScroll.scrollBy({ left: scrollAmt, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Tab switching
+  var tabs = bestsellerSection.querySelectorAll('.bs-tab');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var tabHandle = this.getAttribute('data-tab');
+
+      // Update active tab
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      this.classList.add('active');
+
+      // Show/hide product lists
+      var scrolls = bestsellerSection.querySelectorAll('.bs-scroll');
+      scrolls.forEach(function(scroll) {
+        if (scroll.getAttribute('data-tab') === tabHandle) {
+          scroll.style.display = 'flex';
+        } else {
+          scroll.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Add to Cart functionality
+  var addToCartButtons = bestsellerSection.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach(function(button) {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      var productHandle = this.getAttribute('data-product-handle');
+
+      fetch('/products/' + productHandle + '.json')
+        .then(response => response.json())
+        .then(data => {
+          var variantId = data.product.variants[0].id;
+
+          // Add to cart using Shopify's cart API
+          fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              items: [{
+                id: variantId,
+                quantity: 1
+              }]
+            })
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Show success message or redirect to cart
+            window.location.href = '/cart';
+          })
+          .catch(error => console.error('Error adding to cart:', error));
+        })
+        .catch(error => console.error('Error fetching product:', error));
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Bestsellers",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Best Sellers" },
+    { "type": "collection", "id": "collection", "label": "Collection to feature" },
+    { "type": "url", "id": "link", "label": "View all link" }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Category Tab",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Tab label", "default": "Night Sets" },
+        { "type": "text", "id": "handle", "label": "Collection handle", "default": "night-sets" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Bestsellers" }]
+}
+{% endschema %}

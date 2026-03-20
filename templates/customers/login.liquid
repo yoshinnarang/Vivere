@@ -1,0 +1,51 @@
+<div class="account-page reveal" style="max-width:440px;margin:0 auto;padding:60px 20px;">
+  <h1 class="sec-title" style="text-align:center;margin-bottom:32px;">Sign In</h1>
+
+  {% form 'customer_login' %}
+    {%- if form.errors -%}
+      <div class="form-error">{{ form.errors | default_errors }}</div>
+    {%- endif -%}
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="customer[email]" autocomplete="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="customer[password]" autocomplete="current-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" style="width:100%;">Sign In</button>
+    <p style="text-align:center;margin-top:16px;font-size:14px;">
+      <a href="#recover" id="recover-link" style="color:var(--caramel);">Forgot password?</a>
+    </p>
+    <p style="text-align:center;margin-top:8px;font-size:14px;">
+      Don&rsquo;t have an account? <a href="/account/register" style="color:var(--caramel);">Create one</a>
+    </p>
+  {% endform %}
+
+  <div id="recover" style="display:none;margin-top:40px;">
+    <h2 style="font-family:var(--serif);font-size:24px;margin-bottom:16px;">Reset Password</h2>
+    {% form 'recover_customer_password' %}
+      {%- if form.posted_successfully? -%}
+        <p style="color:var(--caramel);">We&rsquo;ve sent you an email with a link to reset your password.</p>
+      {%- endif -%}
+      <div class="form-group">
+        <label for="recover-email">Email</label>
+        <input type="email" id="recover-email" name="email" autocomplete="email" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;">Send Reset Link</button>
+      <p style="text-align:center;margin-top:12px;"><a href="#" id="cancel-recover" style="color:var(--caramel);font-size:14px;">Back to sign in</a></p>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+  document.getElementById('recover-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('recover').style.display = 'block';
+  });
+  document.getElementById('cancel-recover').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('recover').style.display = 'none';
+  });
+</script>

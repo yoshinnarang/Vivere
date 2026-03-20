@@ -1,0 +1,160 @@
+<div class="info-page">
+  <section class="info-hero">
+    <span class="info-eyebrow">CONTACT</span>
+    <h1>We're Here for You</h1>
+    <p>A question, a thought, a compliment — we'd love to hear it.</p>
+  </section>
+
+  <div class="info-body">
+    <div class="info-content">
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-icon">&#9993;</span>
+          <h3>Email</h3>
+          <a href="mailto:hello@vivere.in">hello@vivere.in</a>
+          <span class="contact-note">We respond within 24 hours</span>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">&#9742;</span>
+          <h3>WhatsApp</h3>
+          <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+          <span class="contact-note">Mon &ndash; Sat, 10am &ndash; 7pm</span>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">&#9679;</span>
+          <h3>Instagram</h3>
+          <a href="https://instagram.com/shopvivere" target="_blank">@shopvivere</a>
+          <span class="contact-note">DM us anytime</span>
+        </div>
+        <div class="contact-card">
+          <span class="contact-icon">&#9826;</span>
+          <h3>Based In</h3>
+          <span class="contact-detail">New Delhi, India</span>
+          <span class="contact-note">Fulfilment & Support</span>
+        </div>
+      </div>
+
+      <div class="info-divider"></div>
+
+      <h2>How Can We Help?</h2>
+      <div class="help-topics">
+        <div class="help-topic">
+          <h3>Order & Delivery</h3>
+          <p>Tracking, delivery timeline, or address changes. Share your order number and we'll look into it immediately.</p>
+        </div>
+        <div class="help-topic">
+          <h3>Size & Fit</h3>
+          <p>Unsure about sizing? Check our <a href="/pages/size-guide">Size Guide</a> or message us your measurements — we'll recommend the perfect fit.</p>
+        </div>
+        <div class="help-topic">
+          <h3>Returns & Exchanges</h3>
+          <p>Something not right? Read our <a href="/pages/returns">returns policy</a> or reach out and we'll handle it.</p>
+        </div>
+        <div class="help-topic">
+          <h3>Product Questions</h3>
+          <p>Fabric details, care instructions, styling — ask us anything about our collection.</p>
+        </div>
+        <div class="help-topic">
+          <h3>Feedback</h3>
+          <p>Your voice shapes every collection we make. We genuinely want to hear from you.</p>
+        </div>
+        <div class="help-topic">
+          <h3>Collaborations</h3>
+          <p>Interested in working with Vivere? We'd love to explore it. Drop us an email.</p>
+        </div>
+      </div>
+
+      <div class="info-divider"></div>
+
+      <div class="info-help" style="text-align: center;">
+        <h2>Quick Answers</h2>
+        <p>Many questions are already answered in our <a href="/pages/faq">FAQ</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+{% render 'info-page-styles' %}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  margin-bottom: 20px;
+}
+.contact-card {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+}
+.contact-icon {
+  display: block;
+  font-size: 24px;
+  color: var(--caramel);
+  margin-bottom: 16px;
+}
+.contact-card h3 {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--midnight);
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+.contact-card a,
+.contact-detail {
+  display: block;
+  font-size: 15px;
+  color: var(--midnight);
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+.contact-card a:hover {
+  color: var(--caramel);
+}
+.contact-note {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+.help-topics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+.help-topic {
+  padding: 28px 24px;
+  border-top: 1px solid var(--border);
+}
+.help-topic h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--midnight);
+  margin-bottom: 10px;
+}
+.help-topic p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-mid);
+  font-weight: 300;
+}
+.help-topic a {
+  color: var(--caramel);
+  text-decoration: underline;
+  font-weight: 500;
+}
+.help-topic a:hover {
+  color: var(--midnight);
+}
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .help-topics { grid-template-columns: 1fr; }
+}
+</style>

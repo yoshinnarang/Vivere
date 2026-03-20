@@ -17,13 +17,15 @@
   <!-- INFO -->
   <div class="product-info">
     <p class="product-breadcrumb">
-      <a href="/">Home</a> /
-      <a href="{{ collection.url }}">{{ collection.title | default: 'Collections' }}</a> /
+      <a href="/">Home</a> &nbsp;/&nbsp;
+      <a href="{{ collection.url }}">{{ collection.title | default: 'Collections' }}</a> &nbsp;/&nbsp;
       {{ product.title }}
     </p>
 
     {%- if product.tags contains 'new-in' -%}
-      <span class="prod-badge" style="position:static;display:inline-block;margin-bottom:16px;">New In</span>
+      <span class="prod-badge" style="position:static;display:inline-block;margin-bottom:18px;">New In</span>
+    {%- elsif product.tags contains 'bestseller' -%}
+      <span class="prod-badge sale" style="position:static;display:inline-block;margin-bottom:18px;">Bestseller</span>
     {%- endif -%}
 
     <h1 class="product-title">{{ product.title }}</h1>
@@ -35,7 +37,7 @@
         <span class="product-price-compare">{{ product.compare_at_price | money }}</span>
         {%- assign saving = product.compare_at_price | minus: product.price -%}
         {%- assign pct = saving | times: 100 | divided_by: product.compare_at_price -%}
-        <span class="product-savings">{{ pct }}% off</span>
+        <span class="product-savings">Save {{ pct }}%</span>
       {%- endif -%}
     </div>
 
@@ -50,7 +52,7 @@
 
     <!-- SIZE -->
     {%- if size_option -%}
-      <p class="option-label">Select Size <a href="/pages/size-guide" style="color:var(--mauve);font-weight:400;text-transform:none;letter-spacing:0;">Size Guide →</a></p>
+      <p class="option-label">Select Size <a href="/pages/size-guide" style="color:var(--mauve);font-weight:400;text-transform:none;letter-spacing:0;">Size Guide &rarr;</a></p>
       <div class="size-grid">
         {%- assign sizes_shown = '' -%}
         {%- for variant in product.variants -%}
@@ -90,13 +92,12 @@
         <button type="button" class="add-to-bag" disabled style="opacity:0.5;cursor:not-allowed;">Sold Out</button>
       {%- endif -%}
     {%- endform -%}
-    <button class="wishlist-btn">♡ &nbsp;Add to Wishlist</button>
 
     <div class="product-perks">
-      <div class="perk"><span class="perk-icon">✦</span> Free shipping above ₹999</div>
-      <div class="perk"><span class="perk-icon">○</span> 15-day easy returns</div>
-      <div class="perk"><span class="perk-icon">◇</span> COD available</div>
-      <div class="perk"><span class="perk-icon">△</span> Premium fabrics</div>
+      <div class="perk"><span class="perk-icon">&#10022;</span> Premium fabrics</div>
+      <div class="perk"><span class="perk-icon">&#9675;</span> Free shipping &#8377;1,499+</div>
+      <div class="perk"><span class="perk-icon">&#9671;</span> 15-day easy returns</div>
+      <div class="perk"><span class="perk-icon">&#9651;</span> COD available</div>
     </div>
 
     <div class="product-details">
@@ -105,17 +106,16 @@
         <div class="detail-body">{{ product.description }}</div>
       </div>
       <div class="detail-row">
-        <button class="detail-toggle">Fabric & Care <span class="arr">+</span></button>
+        <button class="detail-toggle">Fabric &amp; Care <span class="arr">+</span></button>
         <div class="detail-body">
-          {%- assign fabric_tag = product.tags | join: ',' -%}
-          Modal blend / Satin-finish cotton. Machine wash cold. Do not bleach. Tumble dry low.
+          Premium modal blend with satin finish. Machine wash cold on gentle cycle. Do not bleach. Tumble dry low. Iron on low heat if needed.
         </div>
       </div>
       <div class="detail-row">
-        <button class="detail-toggle">Shipping & Returns <span class="arr">+</span></button>
+        <button class="detail-toggle">Shipping &amp; Returns <span class="arr">+</span></button>
         <div class="detail-body">
-          Free shipping on orders above ₹999. Standard delivery 3–5 business days. 
-          Easy 15-day returns — just raise a return request and we'll handle the rest.
+          Free shipping on orders above &#8377;1,499. Standard delivery 3&ndash;5 business days.
+          Easy 15-day returns &mdash; raise a return request and we&rsquo;ll handle the pickup.
         </div>
       </div>
     </div>
@@ -126,15 +126,15 @@
 <!-- COMPLETE THE SET -->
 {%- assign coll = product.collections.first -%}
 {%- if coll.products.size > 1 -%}
-<div style="padding: 0 48px 88px; max-width: 1440px; margin: 0 auto;">
-  <div class="sec-hdr" style="padding-top: 0; text-align: left; padding-left: 0;">
+<div style="padding: 0 var(--gutter,48px) var(--section-pad,88px); max-width: var(--content-max,1400px); margin: 0 auto;">
+  <div class="sec-hdr reveal" style="padding-top: 0; text-align: left; padding-left: 0;">
     <span class="sec-eye">Complete the Set</span>
-    <h2 class="sec-title" style="font-size: 36px;">More from {{ coll.title }}</h2>
+    <h2 class="sec-title" style="font-size: clamp(28px,3vw,38px);">More from {{ coll.title }}</h2>
   </div>
-  <div class="prods-grid">
+  <div class="prods-grid stagger-children">
     {%- for related in coll.products limit: 4 -%}
       {%- unless related.handle == product.handle -%}
-        <div class="prod reveal">
+        <div class="prod">
           <div class="prod-img-box">
             <a href="{{ related.url }}">
               <img src="{{ related.featured_image | img_url: '500x' }}" alt="{{ related.title | escape }}" loading="lazy">
@@ -142,7 +142,7 @@
           </div>
           <p class="prod-coll">{{ related.type }}</p>
           <h3 class="prod-name"><a href="{{ related.url }}" style="color:inherit;">{{ related.title }}</a></h3>
-          <p class="prod-price">{{ related.price | money }}</p>
+          <p class="prod-price" style="font-size:15px;color:var(--midnight);font-weight:500;">{{ related.price | money }}</p>
         </div>
       {%- endunless -%}
     {%- endfor -%}
