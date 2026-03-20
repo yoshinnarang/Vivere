@@ -26,87 +26,70 @@
     </div>
 
     <div class="bs-scroll-wrap">
-      <!-- NIGHT SETS TAB CONTENT -->
-      <div class="bs-scroll reveal" data-tab="night-sets" style="display: flex;">
-        {%- assign sets_handles = "bliss-pop-short-set-1,cozy-check-set-1,modal-comfort-set,lace-elegance-set,silk-touch-set,comfort-blend-set" | split: "," -%}
-        {%- assign sets_products = "Bliss Pop Short Set,Cozy Check Set,Modal Comfort Set,Lace Elegance Set,Silk Touch Set,Comfort Blend Set" | split: "," -%}
-        {%- assign sets_prices = "1799,1599,1799,2099,1899,1699" | split: "," -%}
-        {%- for i in (0..5) -%}
-          <div class="prod bs-card">
-            <div class="prod-img-box">
-              <a href="/products/{{ sets_handles[i] }}">
-                <img class="prod-img-primary"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=667&q=80&fit=crop"
-                  alt="{{ sets_products[i] }}"
-                  loading="lazy">
-              </a>
-              <span class="prod-badge {% if i == 0 %}new{% elsif i == 1 %}bestseller{% endif %}">
-                {%- if i == 0 -%}New In{%- elsif i == 1 -%}Bestseller{%- endif -%}
-              </span>
-              <div class="prod-actions">
-                <button type="button" class="prod-btn add-to-cart" data-product-handle="{{ sets_handles[i] }}">Add to Bag</button>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'tab' -%}
+          {%- assign collection = collections[block.settings.handle] -%}
+          <div class="bs-scroll reveal" data-tab="{{ block.settings.handle }}" style="display: {% if forloop.first %}flex{% else %}none{% endif %};">
+            {%- if collection.products.size > 0 -%}
+              {%- for product in collection.products limit: 6 -%}
+                <div class="prod bs-card">
+                  <div class="prod-img-box">
+                    <a href="{{ product.url }}">
+                      {%- if product.featured_image -%}
+                        <img class="prod-img-primary"
+                          src="{{ product.featured_image | img_url: '500x667' }}"
+                          alt="{{ product.title | escape }}"
+                          loading="lazy">
+                      {%- else -%}
+                        <img class="prod-img-primary"
+                          src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=667&q=80&fit=crop"
+                          alt="{{ product.title | escape }}"
+                          loading="lazy">
+                      {%- endif -%}
+                    </a>
+                    {%- if product.tags contains 'new-in' -%}
+                      <span class="prod-badge new">New In</span>
+                    {%- elsif product.tags contains 'bestseller' -%}
+                      <span class="prod-badge bestseller">Bestseller</span>
+                    {%- elsif product.tags contains 'trending' -%}
+                      <span class="prod-badge trending">Trending</span>
+                    {%- endif -%}
+                    <div class="prod-actions">
+                      <form action="/cart/add" method="post" style="width: 100%;">
+                        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                        <button type="submit" class="prod-btn">Add to Bag</button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <h3 class="prod-name"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+
+                  <div class="prod-price-row">
+                    <span class="prod-price">{{ product.price | money }}</span>
+                    {%- if product.compare_at_price > product.price -%}
+                      <span class="prod-mrp">{{ product.compare_at_price | money }}</span>
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+
+              <!-- VIEW ALL CARD -->
+              <div class="prod bs-card bs-viewall">
+                <div class="prod-img-box" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
+                  <div style="text-align: center;">
+                    <h3 class="prod-name" style="font-size: 18px; margin-bottom: 8px;">{{ block.settings.label }}</h3>
+                    <a href="/collections/{{ block.settings.handle }}" style="text-decoration: underline; color: var(--midnight); font-size: 14px;">View all</a>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <h3 class="prod-name"><a href="/products/{{ sets_handles[i] }}">{{ sets_products[i] }}</a></h3>
-
-            <div class="prod-price-row">
-              <span class="prod-price">Rs {{ sets_prices[i] }}.00</span>
-            </div>
-          </div>
-        {%- endfor -%}
-
-        <!-- VIEW ALL CARD -->
-        <div class="prod bs-card bs-viewall">
-          <div class="prod-img-box" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
-            <div style="text-align: center;">
-              <h3 class="prod-name" style="font-size: 18px; margin-bottom: 8px;">Night Sets</h3>
-              <a href="/collections/night-sets" style="text-decoration: underline; color: var(--midnight); font-size: 14px;">View all</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- NIGHT DRESS TAB CONTENT -->
-      <div class="bs-scroll reveal" data-tab="night-dress" style="display: none;">
-        {%- assign dress_handles = "satin-glow-nightdress,artisan-edit-wide-pyjama,velvet-touch-nightdress,silk-dreams-robe,ethereal-slip-dress,premium-night-gown" | split: "," -%}
-        {%- assign dress_products = "Satin Glow Nightdress,Artisan Edit Wide Pyjama,Velvet Touch Nightdress,Silk Dreams Robe,Ethereal Slip Dress,Premium Night Gown" | split: "," -%}
-        {%- assign dress_prices = "2199,2599,1899,2499,2299,2799" | split: "," -%}
-        {%- for i in (0..5) -%}
-          <div class="prod bs-card">
-            <div class="prod-img-box">
-              <a href="/products/{{ dress_handles[i] }}">
-                <img class="prod-img-primary"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=667&q=80&fit=crop"
-                  alt="{{ dress_products[i] }}"
-                  loading="lazy">
-              </a>
-              <span class="prod-badge {% if i == 0 %}new{% elsif i == 2 %}bestseller{% endif %}">
-                {%- if i == 0 -%}New In{%- elsif i == 2 -%}Bestseller{%- endif -%}
-              </span>
-              <div class="prod-actions">
-                <button type="button" class="prod-btn add-to-cart" data-product-handle="{{ dress_handles[i] }}">Add to Bag</button>
+            {%- else -%}
+              <div style="padding: 40px; text-align: center; color: var(--midnight);">
+                <p>No products in this collection yet.</p>
               </div>
-            </div>
-
-            <h3 class="prod-name"><a href="/products/{{ dress_handles[i] }}">{{ dress_products[i] }}</a></h3>
-
-            <div class="prod-price-row">
-              <span class="prod-price">Rs {{ dress_prices[i] }}.00</span>
-            </div>
+            {%- endif -%}
           </div>
-        {%- endfor -%}
-
-        <!-- VIEW ALL CARD -->
-        <div class="prod bs-card bs-viewall">
-          <div class="prod-img-box" style="background: var(--ivory); display: flex; align-items: center; justify-content: center;">
-            <div style="text-align: center;">
-              <h3 class="prod-name" style="font-size: 18px; margin-bottom: 8px;">Night Dress</h3>
-              <a href="/collections/night-dress" style="text-decoration: underline; color: var(--midnight); font-size: 14px;">View all</a>
-            </div>
-          </div>
-        </div>
-      </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </div>
