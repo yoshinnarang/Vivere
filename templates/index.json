@@ -42,6 +42,7 @@
         },
         "slide-3": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/ChatGPT_Image_Mar_20_2026_11_55_43_AM.png",
             "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
