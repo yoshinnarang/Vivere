@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -6,36 +15,52 @@
         "slide-1": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/image_1.jpg",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
             "eyebrow": "The Moonlit Collection — 2025",
-            "title": "<p>Nights that feel like <em>luxury.<\/em><\/p>",
+            "title": "<p>Nights that feel like <em>luxury.</em></p>",
             "subtitle": "Premium nightwear crafted for the modern Indian woman. Satin finishes, modal blends, hand-finished lace.",
             "cta_text": "Shop the Collection",
+            "cta_url": "",
             "secondary_text": "Our Story",
-            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
+            "secondary_url": ""
           }
         },
         "slide-2": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Mar_20_2026_11_50_46_AM.png",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
             "eyebrow": "New Arrivals",
-            "title": "<p>The <em>Satin<\/em> Series<\/p>",
-            "subtitle": "Buttery-soft satin that catches the light just so. 9 new styles starting at \u20b91,599.",
+            "title": "<p>The <em>Satin</em> Series</p>",
+            "subtitle": "Buttery-soft satin that catches the light just so. 9 new styles starting at ₹1,599.",
             "cta_text": "Shop Satin",
-            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
+            "cta_url": "",
+            "secondary_text": "",
+            "secondary_url": ""
           }
         },
         "slide-3": {
           "type": "slide",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Mar_20_2026_11_55_43_AM.png",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
             "eyebrow": "Affordable Luxury",
-            "title": "<p>Feel extraordinary, <em>every night.<\/em><\/p>",
-            "subtitle": "Premium quality at honest prices. All styles under \u20b92,000.",
+            "title": "<p>Feel extraordinary, <em>every night.</em></p>",
+            "subtitle": "Premium quality at honest prices. All styles under ₹2,000.",
             "cta_text": "Explore All",
-            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top"
+            "cta_url": "",
+            "secondary_text": "",
+            "secondary_url": ""
           }
         }
       },
-      "block_order": ["slide-1", "slide-2", "slide-3"]
+      "block_order": [
+        "slide-1",
+        "slide-2",
+        "slide-3"
+      ],
+      "settings": {}
     },
     "bestsellers": {
       "type": "bestsellers",
@@ -55,20 +80,26 @@
           }
         }
       },
-      "block_order": ["tab-1", "tab-2"],
+      "block_order": [
+        "tab-1",
+        "tab-2"
+      ],
       "settings": {
-        "title": "Best Sellers"
+        "title": "Best Sellers",
+        "collection": "",
+        "link": ""
       }
     },
     "lookbook-banner": {
       "type": "lookbook-banner",
       "settings": {
-        "eyebrow": "SS\u201926",
+        "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&fit=crop&crop=top",
+        "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
+        "eyebrow": "SS’26",
         "title": "FRESH. FUN. FINESSE.",
         "body": "Embrace the season with vibrant energy and effortless ease. Reimagining rest with breathable fabrics and a palette of pure joy, keeping you cool, spirited, and chic through every sun-drenched moment.",
         "cta_text": "Shop Now",
-        "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=85&fit=crop&crop=top",
-        "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top"
+        "cta_link": ""
       }
     },
     "image-grid": {
@@ -76,10 +107,13 @@
       "settings": {
         "fallback_1": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&q=85&fit=crop&crop=top",
         "alt_1": "Vivere Satin Collection",
+        "link_1": "",
         "fallback_2": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
         "alt_2": "Vivere Night Dress",
+        "link_2": "",
         "fallback_3": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=85&fit=crop&crop=top",
-        "alt_3": "Vivere Modal Collection"
+        "alt_3": "Vivere Modal Collection",
+        "link_3": ""
       }
     },
     "featured-section": {
