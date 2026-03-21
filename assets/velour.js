@@ -103,6 +103,12 @@ document.addEventListener('DOMContentLoaded', function () {
     btn.addEventListener('click', function () {
       document.querySelectorAll('.size-btn').forEach(function (b) { b.classList.remove('active'); });
       this.classList.add('active');
+      // Update the hidden variant ID input with the selected size's variant ID
+      var variantId = this.getAttribute('data-variant-id');
+      var input = document.getElementById('variant-id-input');
+      if (input && variantId) {
+        input.value = variantId;
+      }
     });
   });
 

@@ -59,7 +59,7 @@
           {%- assign s = variant.options[size_option] -%}
           {%- assign check_string = sizes_shown | append: s | append: ',' -%}
           {%- unless sizes_shown contains check_string -%}
-            <button class="size-btn {% if forloop.first %}active{% endif %}" data-size="{{ s }}">{{ s }}</button>
+            <button class="size-btn {% if forloop.first %}active{% endif %}" data-size="{{ s }}" data-variant-id="{{ variant.id }}">{{ s }}</button>
             {%- assign sizes_shown = sizes_shown | append: s | append: ',' -%}
           {%- endunless -%}
         {%- endfor -%}
@@ -86,7 +86,7 @@
     {%- endif -%}
 
     {%- form 'product', product -%}
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <input type="hidden" name="id" id="variant-id-input" value="{{ product.variants.first.id }}">
       <button type="submit" class="add-to-bag">Add to Bag</button>
     {%- endform -%}
 
