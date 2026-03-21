@@ -54,10 +54,11 @@
     {%- if size_option -%}
       <p class="option-label">Select Size <a href="/pages/size-guide" style="color:var(--mauve);font-weight:400;text-transform:none;letter-spacing:0;">Size Guide &rarr;</a></p>
       <div class="size-grid">
-        {%- assign sizes_shown = '' -%}
+        {%- assign sizes_shown = ',' -%}
         {%- for variant in product.variants -%}
           {%- assign s = variant.options[size_option] -%}
-          {%- unless sizes_shown contains s -%}
+          {%- assign check_string = sizes_shown | append: s | append: ',' -%}
+          {%- unless sizes_shown contains check_string -%}
             <button class="size-btn {% if forloop.first %}active{% endif %}" data-size="{{ s }}">{{ s }}</button>
             {%- assign sizes_shown = sizes_shown | append: s | append: ',' -%}
           {%- endunless -%}
