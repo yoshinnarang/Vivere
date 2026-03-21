@@ -1241,6 +1241,8 @@ footer {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: opacity;
+  backface-visibility: hidden;
+  will-change: opacity;
 }
 .product-info { padding-top: 12px; }
 .product-breadcrumb {

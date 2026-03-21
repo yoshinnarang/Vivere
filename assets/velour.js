@@ -86,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
       thumb.addEventListener('click', function () {
         thumbs.forEach(function (t) { t.classList.remove('active'); });
         this.classList.add('active');
-        var newSrc = this.querySelector('img').src;
+        var thumbSrc = this.querySelector('img').src;
+
+        // Convert thumbnail URL to full-resolution URL
+        var newSrc = thumbSrc.replace(/\/300x300/, '/1200x1200');
         mainImg.style.opacity = '0';
 
         // Preload the new image before fading in
