@@ -26,20 +26,6 @@
             "secondary_url": ""
           }
         },
-        "slide-3": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/banner_4.png",
-            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
-            "eyebrow": "Affordable Luxury",
-            "title": "<p>Feel extraordinary, <em>every night.</em></p>",
-            "subtitle": "Premium quality, thoughtfully priced. Luxury that feels accessible.",
-            "cta_text": "Explore All",
-            "cta_url": "",
-            "secondary_text": "",
-            "secondary_url": ""
-          }
-        },
         "slide-2": {
           "type": "slide",
           "settings": {
@@ -53,12 +39,26 @@
             "secondary_text": "",
             "secondary_url": ""
           }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner_4.png",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
+            "eyebrow": "Affordable Luxury",
+            "title": "<p>Feel extraordinary, <em>every night.</em></p>",
+            "subtitle": "Premium quality, thoughtfully priced. Luxury that feels accessible.",
+            "cta_text": "Explore All",
+            "cta_url": "",
+            "secondary_text": "",
+            "secondary_url": ""
+          }
         }
       },
       "block_order": [
         "slide-1",
-        "slide-3",
-        "slide-2"
+        "slide-2",
+        "slide-3"
       ],
       "settings": {}
     },
