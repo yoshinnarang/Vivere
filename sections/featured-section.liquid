@@ -12,12 +12,16 @@
 
     <div class="featured-content">
       <div class="featured-image">
-        <img src="{{ section.settings.image_fallback }}" alt="Featured collection" loading="lazy">
+        {%- if section.settings.image != blank -%}
+          <img src="{{ section.settings.image | img_url: '900x' }}" alt="Featured collection" loading="lazy">
+        {%- elsif section.settings.image_fallback != blank -%}
+          <img src="{{ section.settings.image_fallback }}" alt="Featured collection" loading="lazy">
+        {%- endif -%}
       </div>
       <div class="featured-text">
         <span class="featured-label">OUR PHILOSOPHY</span>
         <h3 class="featured-subtitle">Every woman deserves to feel <em>beautiful.</em></h3>
-        <p class="featured-body">Velour was born from a simple frustration — why should luxury nightwear cost a month's salary? We set out to close the gap between aspiration and access. Premium modal blends, satin finishes, considered lace detailing — all at prices that feel like an act of everyday self-love.</p>
+        <p class="featured-body">Vivere was born from a simple frustration — why should luxury nightwear cost a month's salary? We set out to close the gap between aspiration and access. Premium modal blends, satin finishes, considered lace detailing — all at prices that feel like an act of everyday self-love.</p>
         <div class="featured-stats">
           <div class="stat">
             <div class="stat-number" data-target="4200">0</div>
