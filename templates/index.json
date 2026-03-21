@@ -26,20 +26,6 @@
             "secondary_url": ""
           }
         },
-        "slide-3": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/banner_4.png",
-            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
-            "eyebrow": "Affordable Luxury",
-            "title": "<p>Feel extraordinary, <em>every night.</em></p>",
-            "subtitle": "Premium quality at honest prices. All styles under ₹2,000.",
-            "cta_text": "Explore All",
-            "cta_url": "",
-            "secondary_text": "",
-            "secondary_url": ""
-          }
-        },
         "slide-2": {
           "type": "slide",
           "settings": {
@@ -47,8 +33,22 @@
             "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
             "eyebrow": "New Arrivals",
             "title": "<p>The <em>Satin</em> Series</p>",
-            "subtitle": "Buttery-soft satin that catches the light just so. 9 new styles starting at ₹1,599.",
+            "subtitle": "The softest satin you'll ever wear. Exclusively yours.",
             "cta_text": "Shop Satin",
+            "cta_url": "",
+            "secondary_text": "",
+            "secondary_url": ""
+          }
+        },
+        "slide-3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/banner_4.png",
+            "fallback_url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1800&q=88&fit=crop&crop=top",
+            "eyebrow": "Affordable Luxury",
+            "title": "<p>Feel extraordinary, <em>every night.</em></p>",
+            "subtitle": "Premium quality, thoughtfully priced. Luxury that feels accessible.",
+            "cta_text": "Explore All",
             "cta_url": "",
             "secondary_text": "",
             "secondary_url": ""
@@ -57,8 +57,8 @@
       },
       "block_order": [
         "slide-1",
-        "slide-3",
-        "slide-2"
+        "slide-2",
+        "slide-3"
       ],
       "settings": {}
     },
