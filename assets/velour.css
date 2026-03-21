@@ -2123,22 +2123,24 @@ footer {
   height: 600px;
   width: 100%;
   padding-left: 0;
+  padding-bottom: 60px;
+  padding-right: 40px;
 }
 .lb-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: top center;
 }
 .lb-img-main {
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 60px);
   display: block;
 }
 .lb-img-overlap {
   position: absolute;
-  bottom: -60px;
-  right: -40px;
+  bottom: 0;
+  right: 0;
   width: 280px;
   height: 320px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.15);
@@ -2200,8 +2202,8 @@ footer {
   .lb-img-overlap {
     width: 220px;
     height: 260px;
-    right: -20px;
-    bottom: -40px;
+    right: 0;
+    bottom: 0;
   }
   .lb-content { padding: 0 40px; }
   .lb-title { font-size: 32px; }
@@ -2211,8 +2213,8 @@ footer {
   .lb-inner { gap: 30px; }
   .lb-images { height: 300px; }
   .lb-img-overlap {
-    bottom: -30px;
-    right: -30px;
+    bottom: 0;
+    right: 0;
     width: 220px;
     height: 200px;
   }
