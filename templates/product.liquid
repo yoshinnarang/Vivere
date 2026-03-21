@@ -5,12 +5,12 @@
     <div class="gallery-thumbs">
       {%- for image in product.images limit: 5 -%}
         <div class="thumb {% if forloop.first %}active{% endif %}">
-          <img src="{{ image | img_url: '200x' }}" alt="{{ image.alt | escape | default: product.title }}">
+          <img src="{{ image | img_url: '200x' }}" alt="{{ image.alt | escape | default: product.title }}" loading="eager">
         </div>
       {%- endfor -%}
     </div>
     <div class="gallery-main">
-      <img src="{{ product.featured_image | img_url: '900x' }}" alt="{{ product.title | escape }}" id="main-product-image">
+      <img src="{{ product.featured_image | img_url: '900x' }}" alt="{{ product.title | escape }}" id="main-product-image" loading="eager">
     </div>
   </div>
 

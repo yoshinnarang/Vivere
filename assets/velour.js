@@ -88,10 +88,14 @@ document.addEventListener('DOMContentLoaded', function () {
         this.classList.add('active');
         var newSrc = this.querySelector('img').src;
         mainImg.style.opacity = '0';
-        setTimeout(function () {
+
+        // Preload the new image before fading in
+        var tempImg = new Image();
+        tempImg.onload = function () {
           mainImg.src = newSrc;
           mainImg.style.opacity = '1';
-        }, 200);
+        };
+        tempImg.src = newSrc;
       });
     });
   }

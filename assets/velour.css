@@ -1221,7 +1221,13 @@ footer {
   border: 1.5px solid transparent;
 }
 .thumb.active, .thumb:hover { opacity: 1; border-color: var(--gold); }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  image-rendering: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 .gallery-main {
   aspect-ratio: 3/4;
   overflow: hidden;
@@ -1231,6 +1237,10 @@ footer {
   width: 100%; height: 100%;
   object-fit: cover;
   transition: opacity 0.3s ease;
+  image-rendering: auto;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: opacity;
 }
 .product-info { padding-top: 12px; }
 .product-breadcrumb {
