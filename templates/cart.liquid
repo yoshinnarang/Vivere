@@ -17,7 +17,16 @@
               <div class="cart-item-details">
                 <h3 class="cart-item-title"><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
                 {%- unless item.variant.title == 'Default Title' -%}
-                  <p class="cart-item-variant">{{ item.variant.title }}</p>
+                  <div class="cart-item-variant-row">
+                    <label for="size-{{ item.key }}" class="cart-size-label">Size:</label>
+                    <select class="cart-size-select" id="size-{{ item.key }}" data-item-key="{{ item.key }}" data-product-handle="{{ item.product.handle }}" onchange="changeCartSize(this)">
+                      {%- for variant in item.product.variants -%}
+                        <option value="{{ variant.id }}" {% if variant.id == item.variant.id %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                          {{ variant.title }}{% unless variant.available %} — Sold Out{% endunless %}
+                        </option>
+                      {%- endfor -%}
+                    </select>
+                  </div>
                 {%- endunless -%}
                 <div class="cart-item-price-row">
                   <span class="prod-price">{{ item.final_line_price | money }}</span>
@@ -49,7 +58,7 @@
           </div>
           <p class="cart-note" style="color:var(--text-light);font-size:13px;margin:8px 0 20px;">Shipping & taxes calculated at checkout</p>
           <button type="submit" name="checkout" class="btn btn-primary cart-checkout-btn">Proceed to Checkout</button>
-          <a href="/collections/all" class="cart-continue">Continue Shopping &rarr;</a>
+          <a href="/collections/products" class="cart-continue">Continue Shopping &rarr;</a>
         </div>
 
         <button type="submit" name="update" class="btn btn-outline" style="margin-top:16px;">Update Bag</button>
@@ -58,8 +67,56 @@
     {%- else -%}
       <div class="cart-empty" style="text-align:center;padding:80px 20px;">
         <p style="font-size:18px;color:var(--text-light);margin-bottom:24px;">Your bag is empty</p>
-        <a href="/collections/all" class="btn btn-primary">Start Shopping</a>
+        <a href="/collections/products" class="btn btn-primary">Start Shopping</a>
       </div>
     {%- endif -%}
   </div>
 </div>
+
+<style>
+.cart-item-variant-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+.cart-size-label {
+  font-size: 13px;
+  color: var(--text-mid);
+  font-weight: 400;
+}
+.cart-size-select {
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  background: var(--warm-white);
+  color: var(--text-dark);
+  border-radius: 4px;
+  cursor: pointer;
+}
+</style>
+
+<script>
+async function changeCartSize(select) {
+  const itemKey = select.dataset.itemKey;
+  const newVariantId = parseInt(select.value);
+
+  // Remove old item
+  await fetch('/cart/change.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: itemKey, quantity: 0 })
+  });
+
+  // Add new variant
+  await fetch('/cart/add.js', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ id: newVariantId, quantity: 1 })
+  });
+
+  // Reload to reflect changes
+  window.location.reload();
+}
+</script>
