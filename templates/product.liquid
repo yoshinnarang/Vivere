@@ -169,7 +169,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.vivere.co.in" },
-    { "@type": "ListItem", "position": 2, "name": {{ collection.title | default: "Collections" | json }}, "item": "https://www.vivere.co.in{{ collection.url | default: '/collections/all' }}" },
+    { "@type": "ListItem", "position": 2, "name": {{ collection.title | default: "Collections" | json }}, "item": "https://www.vivere.co.in{{ collection.url | default: '/collections/products' }}" },
     { "@type": "ListItem", "position": 3, "name": {{ product.title | json }}, "item": "https://www.vivere.co.in{{ product.url }}" }
   ]
 }

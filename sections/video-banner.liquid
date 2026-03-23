@@ -34,7 +34,7 @@
       {%- if section.settings.subtitle != blank -%}
         <p class="vb-subtitle">{{ section.settings.subtitle }}</p>
       {%- endif -%}
-      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="btn-primary">
+      <a href="{{ section.settings.cta_link | default: '/collections/products' }}" class="btn-primary">
         {{ section.settings.cta_text | default: 'Shop Now' }}
       </a>
     </div>

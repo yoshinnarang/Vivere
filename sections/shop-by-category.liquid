@@ -8,7 +8,7 @@
 
     <div class="sbc-grid">
       {%- for block in section.blocks -%}
-        <a href="{{ block.settings.link | default: '/collections/all' }}"
+        <a href="{{ block.settings.link | default: '/collections/products' }}"
            class="sbc-card reveal {% cycle '', 'd1', 'd2', 'd3' %}"
            {{ block.shopify_attributes }}>
           <div class="sbc-img-box">

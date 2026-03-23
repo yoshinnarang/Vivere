@@ -25,7 +25,7 @@
       {%- if section.settings.body != blank -%}
         <p class="lb-body">{{ section.settings.body }}</p>
       {%- endif -%}
-      <a href="{{ section.settings.cta_link | default: '/collections/all' }}" class="lb-cta">
+      <a href="{{ section.settings.cta_link | default: '/collections/products' }}" class="lb-cta">
         {{ section.settings.cta_text | default: 'Shop Now' }}
       </a>
     </div>

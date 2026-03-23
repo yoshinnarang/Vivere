@@ -1,6 +1,6 @@
 <section class="img-grid-section">
   <div class="ig-layout">
-    <a href="{{ section.settings.link_1 | default: '/collections/all' }}" class="ig-main">
+    <a href="{{ section.settings.link_1 | default: '/collections/products' }}" class="ig-main">
       {%- if section.settings.image_1 != blank -%}
         <img src="{{ section.settings.image_1 | img_url: '1200x' }}" alt="{{ section.settings.alt_1 | escape }}" loading="lazy">
       {%- else -%}
@@ -8,14 +8,14 @@
       {%- endif -%}
     </a>
     <div class="ig-stack">
-      <a href="{{ section.settings.link_2 | default: '/collections/all' }}" class="ig-stack-item">
+      <a href="{{ section.settings.link_2 | default: '/collections/products' }}" class="ig-stack-item">
         {%- if section.settings.image_2 != blank -%}
           <img src="{{ section.settings.image_2 | img_url: '600x' }}" alt="{{ section.settings.alt_2 | escape }}" loading="lazy">
         {%- else -%}
           <img src="{{ section.settings.fallback_2 | default: 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=85&fit=crop&crop=top' }}" alt="{{ section.settings.alt_2 | default: 'Vivere collection' | escape }}" loading="lazy">
         {%- endif -%}
       </a>
-      <a href="{{ section.settings.link_3 | default: '/collections/all' }}" class="ig-stack-item">
+      <a href="{{ section.settings.link_3 | default: '/collections/products' }}" class="ig-stack-item">
         {%- if section.settings.image_3 != blank -%}
           <img src="{{ section.settings.image_3 | img_url: '600x' }}" alt="{{ section.settings.alt_3 | escape }}" loading="lazy">
         {%- else -%}

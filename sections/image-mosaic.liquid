@@ -9,7 +9,7 @@
       {%- elsif size_class == 'wide' -%}
         {%- assign size_class = 'mosaic-wide' -%}
       {%- endif -%}
-      <a href="{{ block.settings.link | default: '/collections/all' }}"
+      <a href="{{ block.settings.link | default: '/collections/products' }}"
          class="mosaic-cell {{ size_class }}"
          {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
