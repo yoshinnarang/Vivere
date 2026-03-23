@@ -22,6 +22,15 @@
       </div>
     {%- endif -%}
 
+    <div class="article-share" style="margin:48px 0 32px;padding-top:32px;border-top:1px solid var(--border);">
+      <p style="font-size:14px;color:var(--text-light);margin-bottom:12px;">Share this article</p>
+      <div style="display:flex;gap:12px;">
+        <a href="https://wa.me/?text={{ article.title | url_encode }}%20{{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" style="color:var(--text-mid);font-size:14px;">WhatsApp</a>
+        <a href="https://twitter.com/intent/tweet?text={{ article.title | url_encode }}&url={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" style="color:var(--text-mid);font-size:14px;">Twitter</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" style="color:var(--text-mid);font-size:14px;">Facebook</a>
+      </div>
+    </div>
+
     {%- if blog.comments_enabled? -%}
       <div class="article-comments">
         <h3 style="margin-bottom:20px;">Comments ({{ article.comments_count }})</h3>
@@ -44,3 +53,32 @@
     {%- endif -%}
   </div>
 </div>
+
+<!-- Article Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ article.title | json }},
+  "description": {{ article.excerpt_or_content | strip_html | truncate: 200 | json }},
+  "author": { "@type": "Organization", "name": "Vivere" },
+  "publisher": { "@type": "Organization", "name": "Vivere", "logo": { "@type": "ImageObject", "url": "{{ 'icon-main.png' | asset_url | prepend: 'https:' }}" } },
+  "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S' }}",
+  "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S' }}",
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "{{ shop.url }}{{ article.url }}" }
+  {%- if article.image -%},"image": "https:{{ article.image | img_url: '1200x' }}"{%- endif -%}
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ shop.url }}" },
+    { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": "{{ shop.url }}{{ blog.url }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ article.title | json }}, "item": "{{ shop.url }}{{ article.url }}" }
+  ]
+}
+</script>
