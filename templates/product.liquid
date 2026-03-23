@@ -141,3 +141,36 @@
   </div>
 </div>
 {%- endif -%}
+
+<!-- Product Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | truncate: 200 | json }},
+  "image": "https:{{ product.featured_image | img_url: '1200x' }}",
+  "brand": { "@type": "Brand", "name": "Vivere" },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "INR",
+    "lowPrice": "{{ product.price_min | money_without_currency | strip }}",
+    "highPrice": "{{ product.price_max | money_without_currency | strip }}",
+    "availability": "https://schema.org/InStock",
+    "offerCount": "{{ product.variants.size }}"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.vivere.co.in" },
+    { "@type": "ListItem", "position": 2, "name": {{ collection.title | default: "Collections" | json }}, "item": "https://www.vivere.co.in{{ collection.url | default: '/collections/all' }}" },
+    { "@type": "ListItem", "position": 3, "name": {{ product.title | json }}, "item": "https://www.vivere.co.in{{ product.url }}" }
+  ]
+}
+</script>

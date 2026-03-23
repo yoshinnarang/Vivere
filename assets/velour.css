@@ -6,6 +6,20 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Skip Link (accessibility) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 8px 16px;
+  background: var(--midnight);
+  color: var(--ivory);
+  font-size: 14px;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
 :root {
   /* ── Core Palette — Warm Luxury ── */
   --midnight: #0D0A0E;

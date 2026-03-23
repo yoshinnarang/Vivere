@@ -5,8 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page_title }} | Vivere</title>
   <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="theme-color" content="#0D0A0E">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ 'favicon-32.png' | asset_url }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ 'favicon-180.png' | asset_url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ page_description | escape }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  <meta property="og:site_name" content="Vivere">
+  <meta property="og:type" content="{% if template contains 'product' %}product{% else %}website{% endif %}">
+  {%- if page_image -%}<meta property="og:image" content="https:{{ page_image | img_url: '1200x630' }}">{%- endif -%}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ page_title }}">
+  <meta name="twitter:description" content="{{ page_description | escape }}">
+  {%- if page_image -%}<meta name="twitter:image" content="https:{{ page_image | img_url: '1200x630' }}">{%- endif -%}
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Vivere",
+    "url": "https://www.vivere.co.in",
+    "logo": "{{ 'icon-main.png' | asset_url | prepend: 'https:' }}",
+    "sameAs": [
+      "https://instagram.com/vivere.label",
+      "https://facebook.com/vivere.label"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "vivere.live@gmail.com",
+      "contactType": "customer service"
+    }
+  }
+  </script>
 
   {{ content_for_header }}
 
@@ -26,7 +62,7 @@
 
   <!-- Mobile Nav Overlay -->
   <nav class="mobile-nav" aria-label="Mobile navigation">
-    <a href="/collections/all">Collections</a>
+    <a href="/collections/products">Collections</a>
     <a href="/collections/night-sets">Night Sets</a>
     <a href="/collections/new-arrivals">New In</a>
     <a href="/collections/sale">Sale</a>
