@@ -1444,6 +1444,8 @@ footer {
   .menu-toggle { display: flex; }
   .hdr { height: 60px; }
   .logo { font-size: 20px; letter-spacing: 0.28em; }
+  .hdr-actions a:not(.bag-pill) { display: none; }
+  .hdr-actions { gap: 14px; }
 
   .hero-carousel .swiper-slide { height: 70vh; min-height: 480px; }
   .hero-content { padding: 0 20px 44px; }
