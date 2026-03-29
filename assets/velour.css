@@ -1446,6 +1446,7 @@ footer {
   .logo { font-size: 20px; letter-spacing: 0.28em; }
   .hdr-actions a:not(.bag-pill) { display: none; }
   .hdr-actions { gap: 14px; }
+  .hdr { grid-template-columns: 1fr auto auto; }
 
   .hero-carousel .swiper-slide { height: 70vh; min-height: 480px; }
   .hero-content { padding: 0 20px 44px; }
