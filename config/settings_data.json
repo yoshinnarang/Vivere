@@ -16,6 +16,14 @@
     "accent_color": "#C4A47A",
     "secondary_color": "#FAF7F4",
     "whatsapp_number": "9999999999",
-    "copyright_text": "© 2025 Vivere. All rights reserved."
+    "copyright_text": "© 2025 Vivere. All rights reserved.",
+    "content_for_index": [],
+    "blocks": {
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   }
 }
